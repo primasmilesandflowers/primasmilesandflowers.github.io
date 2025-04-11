@@ -1,55 +1,115 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>prima fombo | jr. dev</title>
-    <link rel="stylesheet" href="./style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PrimaSmiles | Web Developer</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        font-family: "IBM Plex Mono", monospace;
+      }
+    </style>
   </head>
   <body>
-    <nav class="navbar">
-      <div class="logo">
-        <li>
-          <a href="#"><strong>primasmilesandflowers˚*•</strong></a>
-        </li>
+    <div class="desktop">
+      <!-- Icons -->
+      <div
+        class="icon"
+        style="top: 40px; left: 40px"
+        onclick="openWindow('about')"
+      >
+        <img
+          src="https://img.icons8.com/ios-filled/50/000000/info.png"
+          alt="About Icon"
+        />
+        <div>About</div>
       </div>
-      <ul class="nav-list">
-        <li><a href="#">about</a></li>
-        <li><a href="#">credentials</a></li>
-      </ul>
-      <li class="dropdown">
-        <a href="#" class="dropbtn">projects</a>
-        <ul class="dropdown-content">
-          <li><a href="#">middle school website</a></li>
-          <li><a href="#">unfollower comparator</a></li>
-          <li><a href="#">portfolio website</a></li>
-        </ul>
-      </li>
-    </nav>
-    <section class="hero">
-      <div>
-        <h1>prima’s<br />programming<br />project<br />portfolio</h1>
-        <p>
-          this is so random but to test scroll feature <br />this is so random
-          but to test scroll feature <br />this is so random but to test scroll
-          feature <br />this is so random but to test scroll feature <br />this
-          is so random but to test scroll feature <br />this is so random but to
-          test scroll feature <br />this is so random but to test scroll feature
-          <br />this is so random but to test scroll feature <br />this is so
-          random but to test scroll feature <br />this is so random but to test
-          scroll feature <br />this is so random but to test scroll feature
-          <br />this is so random but to test scroll feature <br />this is so
-          random but to test scroll feature <br />this is so random but to test
-          scroll feature <br />this is so random but to test scroll feature
-          <br />this is so random but to test scroll feature <br />this is so
-          random but to test scroll feature <br />this is so random but to test
-          scroll feature <br />this is so random but to test scroll feature
-          <br />this is so random but to test scroll feature <br />this is so
-          random but to test scroll feature
-        </p>
-      </div>
-    </section>
 
-    <section class=""></section>
+      <div
+        class="icon"
+        style="top: 120px; left: 40px"
+        onclick="openWindow('projects')"
+      >
+        <img
+          src="https://img.icons8.com/ios-filled/50/000000/code.png"
+          alt="Projects Icon"
+        />
+        <div>Projects</div>
+      </div>
+
+      <!-- Windows -->
+      <div
+        class="window"
+        id="window-about"
+        style="top: 100px; left: 150px; display: none"
+      >
+        <div class="window-header" onmousedown="dragWindow(event, this)">
+          About
+        </div>
+        <div class="window-content">
+          <p>
+            Hey y'all, my name is Prima! I am currently an undergraduate student
+            studying Graphic Information Technology at Phoenix College. My main
+            focus with my studies is to get my foot in the door with UI/UX
+            design. What better way to do that, than to create a portfolio
+            website (like, the one you are on right now...) from scratch? <br />
+            <br />
+            I have had a blast crafting this site and finally putting my
+            creative skills to good use. Getting familiar with industry-utilized
+            applications like Figma, while teaching myself the foundations of
+            HTML, JavaScript, and CSS have all been so insightful. Not only
+            that, but my personal productivity levels have skyrocketed! This
+            website will continue to grow and evolve, as will I, as time goes
+            on. Thanks for following along. <br />
+            <br />
+
+            Lots of Love, <br />
+            <br />
+            Prima :3
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="window"
+        id="window-projects"
+        style="top: 200px; left: 200px; display: none"
+      >
+        <div class="window-header" onmousedown="dragWindow(event, this)">
+          Projects
+        </div>
+        <div class="window-content">
+          <ul>
+            <li>🌸 Desktop Portfolio</li>
+            <li>🎀 Interactive Resume</li>
+            <li>💻 Terminal-style Blog</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Taskbar -->
+      <div class="taskbar">
+        <button class="start-button">Start</button>
+        <a
+          href="https://www.linkedin.com/in/prima-f"
+          target="_blank"
+          class="taskbar-button"
+          >LinkedIn</a
+        >
+        <a
+          href="https://github.com/primasmilesandflowers"
+          target="_blank"
+          class="taskbar-button"
+          >GitHub</a
+        >
+      </div>
+    </div>
+
+    <script src="main.js"></script>
   </body>
 </html>

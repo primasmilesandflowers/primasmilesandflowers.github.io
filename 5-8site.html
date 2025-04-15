@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .content-container {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: center;
+        padding: 20px;
+        background-color: var(--window-bg);
+        border: 2px solid var(--window-border);
+        border-radius: 8px;
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+        max-width: 900px;
+        margin: 50px auto;
+        gap: 20px; /* Space between the wireframe and the blurb */
+      }
+
+      .content-container .blurb {
+        flex: 1;
+        text-align: left;
+        font-size: 14px;
+        color: #333;
+        line-height: 1.6;
+      }
+
+      .content-container iframe {
+        flex: 1;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .content-container h1 {
+        font-size: 24px;
+        color: var(--pink-dark);
+        margin-bottom: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content-container">
+      <iframe
+        width="400"
+        height="450"
+        src="https://embed.figma.com/proto/XsEu6tSzA2RTbkmUt1dO8k/Personalized-pages?node-id=59-13&p=f&scaling=min-zoom&content-scaling=fixed&page-id=58%3A16&embed-host=share"
+        allowfullscreen
+      ></iframe>
+      <div class="blurb">
+        <h1>Web Application Prototype</h1>
+        <p>
+          Over the course of the summer of 2024, I had the opportunity to become
+          a National Science Foundation funded web design intern at Phoenix
+          College. During this time, I collaborated with a team to craft a
+          website to teach software development to children. Geared towards the
+          age demographic of kids in the 5th through the 8th grade, the
+          foundations of computer programming were wrapped up in an
+          easy-to-digest package. By integrating games and interactive elements,
+          while also keeping color theory, accessibility, and tech justice at
+          the forefront, a high-fidelity wireframe was put together in Figma and
+          presented to a panel of mentors and peers.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

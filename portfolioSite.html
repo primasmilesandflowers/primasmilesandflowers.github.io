@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .content-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        background-color: var(--window-bg);
+        border: 2px solid var(--window-border);
+        border-radius: 8px;
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+        max-width: 900px;
+        margin: 50px auto;
+        gap: 20px;
+      }
+
+      .content-container h1 {
+        font-size: 24px;
+        color: var(--pink-dark);
+        margin-bottom: 15px;
+        text-align: left;
+      }
+
+      .content-container .blurb {
+        font-size: 14px;
+        color: #333;
+        line-height: 1.6;
+        text-align: left;
+      }
+
+      .content-container iframe {
+        width: 100%;
+        height: 450px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .carousel {
+        display: flex;
+        overflow-x: auto;
+        gap: 10px;
+        margin: 20px 0;
+      }
+
+      .carousel img {
+        max-width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .carousel-arrow {
+        background-color: var(--window-bg);
+        border: none;
+        color: var(--pink-dark);
+        font-size: 24px;
+        cursor: pointer;
+      }
+
+      .carousel-images {
+        display: flex;
+        gap: 10px;
+      }
+
+      .fullscreen-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        justify-content: center;
+        align-items: center;
+      }
+
+      .fullscreen-modal img {
+        max-width: 90%;
+        max-height: 90%;
+        border-radius: 8px;
+      }
+    </style>
+    <script>
+      function openFullscreen(img) {
+        const modal = document.getElementById("fullscreenModal");
+        const fullscreenImage = document.getElementById("fullscreenImage");
+        fullscreenImage.src = img.src;
+        modal.style.display = "flex";
+      }
+
+      function closeFullscreen() {
+        const modal = document.getElementById("fullscreenModal");
+        modal.style.display = "none";
+      }
+
+      function prevImage() {
+        // Add logic to show previous image
+      }
+
+      function nextImage() {
+        // Add logic to show next image
+      }
+    </script>
+  </head>
+  <body>
+    <div class="content-container">
+      <h1>...and of course, this website</h1>
+      <div class="blurb">
+        Surely I would be selling myself short if I did not include the website
+        that I coded to be my portfolio from the aforementioned portfolio! This
+        has definitely been my most fun project that I have done thus far. By
+        imitating a true digital design process, learning both HTML and CSS, and
+        honing in on my Figma skills, not only have I started a necessary
+        resource that I will continue to tweak for the duration of my
+        professional career, but have found my passion in UI/UX design and
+        front-end development.
+
+        <br /><br />
+
+        Funny enough, in my opinion, the most true-to-life encounter that I
+        faced while making this site was how it has completely morphed from what
+        my original wireframe was. When I set out initially to make this site, I
+        had a very specific vision: I wanted my page to be MySpace-esque, with
+        cyber attributes. I did not know how to carry that vision out though
+        when I first embarked on the journey to code this site. Even though this
+        site does not technically qualify as MySpace-esque, I am still overjoyed
+        with how it has all come together. Simply put, the computer desktop
+        theme makes sense, considering I am a graphic information major, I adore
+        cats, and I love the color pink.
+      </div>
+      <iframe
+        style="border: 1px solid rgba(0, 0, 0, 0.1)"
+        width="800"
+        height="450"
+        src="https://embed.figma.com/design/a4fPSRIwMphO6p425TzZ0P/portfolio-wireframe?node-id=0-1&embed-host=share"
+        allowfullscreen
+      ></iframe>
+      <div class="carousel">
+        <button class="carousel-arrow left" onclick="prevImage()">
+          &#10094;
+        </button>
+        <div class="carousel-images">
+          <img
+            src="images/port-ss1.jpg"
+            alt="Image 1"
+            onclick="openFullscreen(this)"
+          />
+          <img
+            src="images/port-ss2-3.jpg"
+            alt="Image 2"
+            onclick="openFullscreen(this)"
+          />
+          <img
+            src="images/port-ss3-7.jpg"
+            alt="Image 3"
+            onclick="openFullscreen(this)"
+          />
+        </div>
+        <button class="carousel-arrow right" onclick="nextImage()">
+          &#10095;
+        </button>
+      </div>
+      <!-- Fullscreen Modal -->
+      <div
+        id="fullscreenModal"
+        class="fullscreen-modal"
+        onclick="closeFullscreen()"
+      >
+        <img id="fullscreenImage" />
+      </div>
+    </div>
+  </body>
+</html>

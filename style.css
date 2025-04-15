@@ -27,6 +27,11 @@ html {
   overflow: hidden;
 }
 
+body.no-select {
+  user-select: none;
+  cursor: default;
+}
+
 /* === Desktop === */
 .desktop {
   position: relative;
@@ -67,12 +72,14 @@ html {
 /* === Windows === */
 .window {
   position: absolute;
-  width: 400px;
   background-color: var(--window-bg);
   border: 2px solid var(--window-border);
   border-radius: 8px;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
   overflow: hidden;
+  z-index: 999;
+  width: 400px;
+  height: 400px;
 }
 
 .window-header {
@@ -81,11 +88,141 @@ html {
   padding: 10px;
   cursor: move;
   font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.window-controls {
+  display: flex;
+  gap: 5px;
+}
+
+.window-controls button {
+  background-color: var(--pink-light);
+  color: var(--pink-dark);
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.window-controls button:hover {
+  background-color: var(--icon-hover);
 }
 
 .window-content {
-  padding: 15px;
+  overflow: auto;
+  max-height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
   color: #333;
+}
+
+/* === Resize Handles === */
+.resize-handle {
+  position: absolute;
+  background-color: transparent;
+  z-index: 1000;
+}
+
+.resize-handle.side {
+  width: 100%;
+  height: 5px;
+}
+
+.resize-handle.n {
+  top: 0;
+  left: 0;
+  cursor: ns-resize;
+}
+
+.resize-handle.s {
+  bottom: 0;
+  left: 0;
+  cursor: ns-resize;
+}
+
+.resize-handle.e {
+  top: 0;
+  right: 0;
+  width: 5px;
+  height: 100%;
+  cursor: ew-resize;
+}
+
+.resize-handle.w {
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  cursor: ew-resize;
+}
+
+.resize-handle.corner {
+  width: 10px;
+  height: 10px;
+}
+
+.resize-handle.ne {
+  top: 0;
+  right: 0;
+  cursor: nesw-resize;
+}
+
+.resize-handle.nw {
+  top: 0;
+  left: 0;
+  cursor: nwse-resize;
+}
+
+.resize-handle.se {
+  bottom: 0;
+  right: 0;
+  cursor: nwse-resize;
+}
+
+.resize-handle.sw {
+  bottom: 0;
+  left: 0;
+  cursor: nesw-resize;
+}
+
+/* === File Explorer === */
+.file-explorer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  background-color: var(--window-bg);
+  height: calc(100% - 50px);
+  overflow-y: auto;
+}
+
+.file-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--icon-bg);
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.file-row:hover {
+  background-color: var(--icon-hover);
+}
+
+.file-row img {
+  width: 24px;
+  height: 24px;
+}
+
+.file-row span {
+  font-size: 14px;
+  color: var(--pink-dark);
 }
 
 /* === Taskbar === */
@@ -100,6 +237,7 @@ html {
   padding: 0 10px;
   color: white;
   font-size: 14px;
+  z-index: 1000;
 }
 
 .taskbar .start-button {
@@ -108,7 +246,7 @@ html {
   border: none;
   padding: 6px 12px;
   border-radius: 4px;
-  margin-left: auto; /* Pushes the button to the right */
+  margin-left: auto;
   font-weight: bold;
   cursor: pointer;
 }
@@ -123,7 +261,7 @@ html {
   border: none;
   padding: 6px 12px;
   border-radius: 4px;
-  margin-left: 10px; /* Adds spacing between buttons */
+  margin-left: 10px;
   font-weight: bold;
   text-decoration: none;
   display: inline-flex;
@@ -134,4 +272,93 @@ html {
 
 .taskbar .taskbar-button:hover {
   background-color: var(--icon-hover);
+}
+
+/* === Tally Button === */
+.tally-button {
+  background-color: var(--pink-light);
+  color: var(--pink-dark);
+  border: 2px solid var(--pink-dark);
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-family: var(--font-main);
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.tally-button:hover {
+  background-color: var(--pink-dark);
+  color: #fff;
+}
+
+/* === Carousel === */
+.carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  gap: 10px;
+  margin: 20px 0;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.carousel-images {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  gap: 10px;
+}
+
+.carousel img {
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.carousel-arrow {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.carousel-arrow.left {
+  left: 10px;
+}
+
+.carousel-arrow.right {
+  right: 10px;
+}
+
+.carousel-arrow:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Fullscreen Modal */
+.fullscreen-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 40px); /* Avoid overlapping the taskbar */
+  background-color: rgba(0, 0, 0, 0.9);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.fullscreen-modal img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }

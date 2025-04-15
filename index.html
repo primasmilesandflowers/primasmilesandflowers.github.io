@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PrimaSmiles | Web Developer</title>
+    <title>primafombOS | Web Developer</title>
     <link rel="stylesheet" href="style.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap"
@@ -14,6 +14,7 @@
         font-family: "IBM Plex Mono", monospace;
       }
     </style>
+    <script async src="https://tally.so/widgets/embed.js"></script>
   </head>
   <body>
     <div class="desktop">
@@ -42,6 +43,19 @@
         <div>Projects</div>
       </div>
 
+      <div
+        class="icon"
+        style="top: 200px; left: 40px"
+        data-tally-open="wMG8O8"
+        data-tally-width="390"
+      >
+        <img
+          src="https://img.icons8.com/ios-filled/50/000000/external-link.png"
+          alt="Form Icon"
+        />
+        <div>Chat</div>
+      </div>
+
       <!-- Windows -->
       <div
         class="window"
@@ -50,51 +64,80 @@
       >
         <div class="window-header" onmousedown="dragWindow(event, this)">
           About
+          <div class="window-controls">
+            <button class="maximize-button" onclick="maximizeWindow(this)">
+              🗖
+            </button>
+            <button class="close-button" onclick="closeWindow(this)">✖</button>
+          </div>
         </div>
-        <div class="window-content">
-          <p>
-            Hey y'all, my name is Prima! I am currently an undergraduate student
-            studying Graphic Information Technology at Phoenix College. My main
-            focus with my studies is to get my foot in the door with UI/UX
-            design. What better way to do that, than to create a portfolio
-            website (like, the one you are on right now...) from scratch? <br />
-            <br />
-            I have had a blast crafting this site and finally putting my
-            creative skills to good use. Getting familiar with industry-utilized
-            applications like Figma, while teaching myself the foundations of
-            HTML, JavaScript, and CSS have all been so insightful. Not only
-            that, but my personal productivity levels have skyrocketed! This
-            website will continue to grow and evolve, as will I, as time goes
-            on. Thanks for following along. <br />
-            <br />
-
-            Lots of Love, <br />
-            <br />
-            Prima :3
-          </p>
+        <div class="window-content" style="overflow: auto; max-height: 100%">
+          <!-- Content from about.html will be dynamically loaded here -->
         </div>
       </div>
 
       <div
         class="window"
         id="window-projects"
-        style="top: 200px; left: 200px; display: none"
+        style="top: 100px; left: 150px; display: none"
       >
         <div class="window-header" onmousedown="dragWindow(event, this)">
-          Projects
+          📁 Explorer
+          <div class="window-controls">
+            <button class="maximize-button" onclick="maximizeWindow(this)">
+              🗖
+            </button>
+            <button class="close-button" onclick="closeWindow(this)">✖</button>
+          </div>
         </div>
-        <div class="window-content">
-          <ul>
-            <li>🌸 Desktop Portfolio</li>
-            <li>🎀 Interactive Resume</li>
-            <li>💻 Terminal-style Blog</li>
-          </ul>
+        <div
+          class="window-content file-explorer"
+          style="overflow: auto; max-height: 100%"
+        >
+          <!-- Content from projects.html will be dynamically loaded here -->
+        </div>
+      </div>
+
+      <div
+        class="window"
+        id="window-5-8site"
+        style="top: 100px; left: 150px; display: none"
+      >
+        <div class="window-header" onmousedown="dragWindow(event, this)">
+          Web Application Prototype
+          <div class="window-controls">
+            <button class="maximize-button" onclick="maximizeWindow(this)">
+              🗖
+            </button>
+            <button class="close-button" onclick="closeWindow(this)">✖</button>
+          </div>
+        </div>
+        <div class="window-content" style="overflow: auto; max-height: 100%">
+          <!-- Content from 5-8site.html will be dynamically loaded here -->
+        </div>
+      </div>
+
+      <div
+        class="window"
+        id="window-portfolioSite"
+        style="top: 100px; left: 150px; display: none"
+      >
+        <div class="window-header" onmousedown="dragWindow(event, this)">
+          Portfolio Website
+          <div class="window-controls">
+            <button class="maximize-button" onclick="maximizeWindow(this)">
+              🗖
+            </button>
+            <button class="close-button" onclick="closeWindow(this)">✖</button>
+          </div>
+        </div>
+        <div class="window-content" style="overflow: auto; max-height: 100%">
+          <!-- Content from portfolioSite.html will be dynamically loaded here -->
         </div>
       </div>
 
       <!-- Taskbar -->
       <div class="taskbar">
-        <button class="start-button">Start</button>
         <a
           href="https://www.linkedin.com/in/prima-f"
           target="_blank"
@@ -107,6 +150,7 @@
           class="taskbar-button"
           >GitHub</a
         >
+        <button class="start-button" onclick="returnToHome()">Home ⋆｡°✩</button>
       </div>
     </div>
 

@@ -1,55 +1,159 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>prima fombo | jr. dev</title>
-    <link rel="stylesheet" href="./style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>primafombOS | Web Developer</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        font-family: "IBM Plex Mono", monospace;
+      }
+    </style>
+    <script async src="https://tally.so/widgets/embed.js"></script>
   </head>
   <body>
-    <nav class="navbar">
-      <div class="logo">
-        <li>
-          <a href="#"><strong>primasmilesandflowers˚*•</strong></a>
-        </li>
+    <div class="desktop">
+      <!-- Icons -->
+      <div
+        class="icon"
+        style="top: 40px; left: 40px"
+        onclick="openWindow('about')"
+      >
+        <img
+          src="https://img.icons8.com/ios-filled/50/000000/info.png"
+          alt="About Icon"
+        />
+        <div>About</div>
       </div>
-      <ul class="nav-list">
-        <li><a href="#">about</a></li>
-        <li><a href="#">credentials</a></li>
-      </ul>
-      <li class="dropdown">
-        <a href="#" class="dropbtn">projects</a>
-        <ul class="dropdown-content">
-          <li><a href="#">middle school website</a></li>
-          <li><a href="#">unfollower comparator</a></li>
-          <li><a href="#">portfolio website</a></li>
-        </ul>
-      </li>
-    </nav>
-    <section class="hero">
-      <div>
-        <h1>prima’s<br />programming<br />project<br />portfolio</h1>
-        <p>
-          this is so random but to test scroll feature <br />this is so random
-          but to test scroll feature <br />this is so random but to test scroll
-          feature <br />this is so random but to test scroll feature <br />this
-          is so random but to test scroll feature <br />this is so random but to
-          test scroll feature <br />this is so random but to test scroll feature
-          <br />this is so random but to test scroll feature <br />this is so
-          random but to test scroll feature <br />this is so random but to test
-          scroll feature <br />this is so random but to test scroll feature
-          <br />this is so random but to test scroll feature <br />this is so
-          random but to test scroll feature <br />this is so random but to test
-          scroll feature <br />this is so random but to test scroll feature
-          <br />this is so random but to test scroll feature <br />this is so
-          random but to test scroll feature <br />this is so random but to test
-          scroll feature <br />this is so random but to test scroll feature
-          <br />this is so random but to test scroll feature <br />this is so
-          random but to test scroll feature
-        </p>
-      </div>
-    </section>
 
-    <section class=""></section>
+      <div
+        class="icon"
+        style="top: 120px; left: 40px"
+        onclick="openWindow('projects')"
+      >
+        <img
+          src="https://img.icons8.com/ios-filled/50/000000/code.png"
+          alt="Projects Icon"
+        />
+        <div>Projects</div>
+      </div>
+
+      <div
+        class="icon"
+        style="top: 200px; left: 40px"
+        data-tally-open="wMG8O8"
+        data-tally-width="390"
+      >
+        <img
+          src="https://img.icons8.com/ios-filled/50/000000/external-link.png"
+          alt="Form Icon"
+        />
+        <div>Chat</div>
+      </div>
+
+      <!-- Windows -->
+      <div
+        class="window"
+        id="window-about"
+        style="top: 100px; left: 150px; display: none"
+      >
+        <div class="window-header" onmousedown="dragWindow(event, this)">
+          About
+          <div class="window-controls">
+            <button class="maximize-button" onclick="maximizeWindow(this)">
+              🗖
+            </button>
+            <button class="close-button" onclick="closeWindow(this)">✖</button>
+          </div>
+        </div>
+        <div class="window-content" style="overflow: auto; max-height: 100%">
+          <!-- Content from about.html will be dynamically loaded here -->
+        </div>
+      </div>
+
+      <div
+        class="window"
+        id="window-projects"
+        style="top: 100px; left: 150px; display: none"
+      >
+        <div class="window-header" onmousedown="dragWindow(event, this)">
+          📁 Explorer
+          <div class="window-controls">
+            <button class="maximize-button" onclick="maximizeWindow(this)">
+              🗖
+            </button>
+            <button class="close-button" onclick="closeWindow(this)">✖</button>
+          </div>
+        </div>
+        <div
+          class="window-content file-explorer"
+          style="overflow: auto; max-height: 100%"
+        >
+          <!-- Content from projects.html will be dynamically loaded here -->
+        </div>
+      </div>
+
+      <div
+        class="window"
+        id="window-5-8site"
+        style="top: 100px; left: 150px; display: none"
+      >
+        <div class="window-header" onmousedown="dragWindow(event, this)">
+          Web Application Prototype
+          <div class="window-controls">
+            <button class="maximize-button" onclick="maximizeWindow(this)">
+              🗖
+            </button>
+            <button class="close-button" onclick="closeWindow(this)">✖</button>
+          </div>
+        </div>
+        <div class="window-content" style="overflow: auto; max-height: 100%">
+          <!-- Content from 5-8site.html will be dynamically loaded here -->
+        </div>
+      </div>
+
+      <div
+        class="window"
+        id="window-portfolioSite"
+        style="top: 100px; left: 150px; display: none"
+      >
+        <div class="window-header" onmousedown="dragWindow(event, this)">
+          Portfolio Website
+          <div class="window-controls">
+            <button class="maximize-button" onclick="maximizeWindow(this)">
+              🗖
+            </button>
+            <button class="close-button" onclick="closeWindow(this)">✖</button>
+          </div>
+        </div>
+        <div class="window-content" style="overflow: auto; max-height: 100%">
+          <!-- Content from portfolioSite.html will be dynamically loaded here -->
+        </div>
+      </div>
+
+      <!-- Taskbar -->
+      <div class="taskbar">
+        <a
+          href="https://www.linkedin.com/in/prima-f"
+          target="_blank"
+          class="taskbar-button"
+          >LinkedIn</a
+        >
+        <a
+          href="https://github.com/primasmilesandflowers"
+          target="_blank"
+          class="taskbar-button"
+          >GitHub</a
+        >
+        <button class="start-button" onclick="returnToHome()">Home ⋆｡°✩</button>
+      </div>
+    </div>
+
+    <script src="main.js"></script>
   </body>
 </html>

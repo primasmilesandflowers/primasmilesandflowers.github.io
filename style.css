@@ -1,204 +1,364 @@
-/* General styles */
+/* === Base Variables === */
+:root {
+  --pink-light: #ffccdd;
+  --pink-dark: #cc3366;
+  --desktop-bg: #ffe6f0;
+  --window-bg: #fff0f5;
+  --window-border: #cc3366;
+  --taskbar-bg: #cc3366;
+  --icon-bg: #ffe6f0;
+  --icon-hover: #ff99bb;
+  --font-main: "Courier New", Courier, monospace;
+}
+
+/* === Global Reset & Base === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-main);
+}
+
+body,
 html {
-  background-color: #f7e6eb;
-  scroll-behavior: smooth !important;
+  height: 100%;
+  width: 100%;
+  background-color: var(--desktop-bg);
+  overflow: hidden;
 }
 
-/* Headings */
-h1,
-h2,
-h3 {
-  color: #6e2142;
-  font-family: "Poppins", system-ui;
+body.no-select {
+  user-select: none;
+  cursor: default;
 }
 
-h1 {
-  font-optical-sizing: auto;
-  font-size: 100px;
-  margin: 100px 200px 200px;
+/* === Desktop === */
+.desktop {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: var(--desktop-bg);
+  background-image: linear-gradient(
+    135deg,
+    var(--pink-light) 0%,
+    var(--desktop-bg) 100%
+  );
 }
 
-h2 {
-  font-size: 40px;
-  font-weight: 700;
-}
-
-h3 {
+/* === Icons === */
+.icon {
+  position: absolute;
+  width: 80px;
   text-align: center;
-  font-size: 20px;
-  font-weight: 400;
+  cursor: pointer;
+  color: var(--pink-dark);
+  font-size: 14px;
 }
 
-/* Body text */
-.body-text {
-  font-family: "Roboto", system-ui;
-  font-weight: 400;
+.icon img {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 4px;
+  background-color: var(--icon-bg);
+  padding: 5px;
+  border-radius: 8px;
+  transition: background-color 0.3s;
 }
 
-/* Navbar styles */
-.navbar {
+.icon:hover img {
+  background-color: var(--icon-hover);
+}
+
+/* === Windows === */
+.window {
+  position: absolute;
+  background-color: var(--window-bg);
+  border: 2px solid var(--window-border);
+  border-radius: 8px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  z-index: 999;
+  width: 400px;
+  height: 400px;
+}
+
+.window-header {
+  background-color: var(--pink-dark);
+  color: white;
+  padding: 10px;
+  cursor: move;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.window-controls {
+  display: flex;
+  gap: 5px;
+}
+
+.window-controls button {
+  background-color: var(--pink-light);
+  color: var(--pink-dark);
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.window-controls button:hover {
+  background-color: var(--icon-hover);
+}
+
+.window-content {
+  overflow: auto;
+  max-height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  color: #333;
+}
+
+/* === Resize Handles === */
+.resize-handle {
+  position: absolute;
+  background-color: transparent;
+  z-index: 1000;
+}
+
+.resize-handle.side {
+  width: 100%;
+  height: 5px;
+}
+
+.resize-handle.n {
+  top: 0;
+  left: 0;
+  cursor: ns-resize;
+}
+
+.resize-handle.s {
+  bottom: 0;
+  left: 0;
+  cursor: ns-resize;
+}
+
+.resize-handle.e {
+  top: 0;
+  right: 0;
+  width: 5px;
+  height: 100%;
+  cursor: ew-resize;
+}
+
+.resize-handle.w {
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  cursor: ew-resize;
+}
+
+.resize-handle.corner {
+  width: 10px;
+  height: 10px;
+}
+
+.resize-handle.ne {
+  top: 0;
+  right: 0;
+  cursor: nesw-resize;
+}
+
+.resize-handle.nw {
+  top: 0;
+  left: 0;
+  cursor: nwse-resize;
+}
+
+.resize-handle.se {
+  bottom: 0;
+  right: 0;
+  cursor: nwse-resize;
+}
+
+.resize-handle.sw {
+  bottom: 0;
+  left: 0;
+  cursor: nesw-resize;
+}
+
+/* === File Explorer === */
+.file-explorer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  background-color: var(--window-bg);
+  height: calc(100% - 50px);
+  overflow-y: auto;
+}
+
+.file-row {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Space between logo and nav items */
-  background: #f7e6eb;
-  color: #6e2142;
-  padding: 5px 20px; /* Reduced vertical padding to shrink height */
-  font-family: "Poppins", system-ui;
-  font-size: 18px;
-  font-weight: 500;
-  overflow: hidden;
-  position: sticky; /* Make the navbar sticky */
-  top: 0; /* Stick to the top of the screen */
-  z-index: 1000; /* Ensure it stays above other elements */
-}
-
-/* Navbar list */
-.nav-list {
-  display: flex;
-  justify-content: space-between; /* Reduce space between nav items */
-  flex: 1; /* Take up remaining space between logo and dropdown */
-  list-style: none; /* Remove bullet points */
-  margin-left: 4rem; /* Increased space between "about" and "credentials" */
-  padding: 0; /* Ensure no extra spacing */
-}
-
-.nav-list li {
-  position: relative;
-}
-
-.nav-list a {
-  text-decoration: none;
-  color: #6e2142;
-  padding: 0.5rem 1rem; /* Reduced vertical padding for links */
-  display: block;
-  transition: background-color 0.3s ease, color 0.3s ease-in-out;
-}
-
-.nav-list li:first-child {
-  float: left;
-  margin-right: 2rem; /* Set 2rem space between "about" and "credentials" */
-}
-
-.nav-list li:nth-child(2) {
-  margin-left: 0; /* Ensure no extra spacing on "credentials" */
-}
-
-li a:hover {
-  background-color: #fac8d7;
-  padding: 10px 20px;
-}
-
-/* Logo */
-.logo {
-  list-style: none;
-  text-align: left;
-  font-size: 25px;
-  margin-right: 19rem; /* the space between logo and "about" */
-}
-
-.logo a {
-  text-decoration: none;
-  color: #6e2142;
-}
-
-/* Dropdown menu */
-.dropdown {
-  position: relative;
-  display: inline-block; /* Ensure the dropdown aligns properly */
-  list-style: none;
-  margin-left: 2rem; /* Match the space between "credentials" and "projects" */
-  margin-right: 40px; /* Space between "projects" and the edge */
-}
-
-.dropbtn {
-  background-color: #f7e6eb;
-  border: none;
-  color: #6e2142;
-  font-size: 18px;
+  gap: 10px;
+  background-color: var(--icon-bg);
+  padding: 8px 12px;
+  border-radius: 6px;
   cursor: pointer;
-  text-align: center;
-  transition: background-color 0.3s ease-in-out;
-  text-decoration: none; /* Remove underline */
-}
-
-.dropbtn:hover {
-  background-color: #fac8d7;
-  padding: 10px 20px;
-}
-
-.dropdown-content {
-  display: block; /* Ensure it works with visibility and opacity */
-  visibility: hidden; /* Initially hidden */
-  opacity: 0; /* Fully transparent */
-  position: absolute;
-  top: 100%; /* Position below the "projects" button */
-  right: 0; /* Align the dropdown to the right border of the "projects" button */
-  background-color: #6e2142;
-  min-width: 120px; /* Set the minimum width of the dropdown */
-  border-radius: 4px;
-  z-index: 1;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
-  overflow-y: auto; /* Add vertical scrolling if content exceeds height */
-  max-height: 300px; /* Limit the height of the dropdown */
-  transition: opacity 0.3s ease, visibility 0s linear 2s; /* Add delay for hiding */
-}
-
-.dropdown-content a {
-  color: #fff;
-  padding: 10px 20px;
-  text-decoration: none;
-  display: block;
   transition: background-color 0.3s ease;
 }
 
-.dropdown-content a:hover {
-  background-color: #fac8d7;
-  color: #6e2142;
+.file-row:hover {
+  background-color: var(--icon-hover);
 }
 
-.dropdown-content li {
-  border-bottom: 1px solid #444;
+.file-row img {
+  width: 24px;
+  height: 24px;
 }
 
-.dropdown-content li:last-child {
-  border-bottom: none;
+.file-row span {
+  font-size: 14px;
+  color: var(--pink-dark);
 }
 
-/* Show dropdown on hover */
-.dropdown:hover .dropdown-content {
-  visibility: visible; /* Make it visible */
-  opacity: 1; /* Fully opaque */
-  transition: opacity 0.3s ease, visibility 0s linear 0s; /* No delay for showing */
+/* === Taskbar === */
+.taskbar {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  background-color: var(--taskbar-bg);
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  color: white;
+  font-size: 14px;
+  z-index: 1000;
 }
 
-/* Adjust dropdown for smaller screens */
-@media (max-width: 768px) {
-  .dropdown-content {
-    left: auto; /* Prevent it from being cut off */
-    right: 0; /* Align it to the right edge of the dropdown */
-    min-width: 100%; /* Make it take up the full width of the parent */
-    transform: none; /* Remove centering for smaller screens */
-  }
-}
-
-@media (max-width: 480px) {
-  .dropdown-content {
-    position: static; /* Make it flow with the document */
-    box-shadow: none; /* Remove shadow for simplicity */
-    border-radius: 0; /* Remove border radius */
-  }
-
-  .dropdown-content a {
-    padding: 10px; /* Adjust padding for smaller screens */
-  }
-}
-
-/* Projects dropdown */
-.projects-dropdown {
-  font-size: 15px;
-  color: #f7e6eb;
-  font-family: "Poppins", system-ui;
-  margin: 0 20px 0 0;
+.taskbar .start-button {
+  background-color: var(--pink-light);
+  color: var(--pink-dark);
   border: none;
-  outline: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-left: auto;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.taskbar .start-button:hover {
+  background-color: var(--icon-hover);
+}
+
+.taskbar .taskbar-button {
+  background-color: var(--pink-light);
+  color: var(--pink-dark);
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-left: 10px;
+  font-weight: bold;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.taskbar .taskbar-button:hover {
+  background-color: var(--icon-hover);
+}
+
+/* === Tally Button === */
+.tally-button {
+  background-color: var(--pink-light);
+  color: var(--pink-dark);
+  border: 2px solid var(--pink-dark);
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-family: var(--font-main);
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.tally-button:hover {
+  background-color: var(--pink-dark);
+  color: #fff;
+}
+
+/* === Carousel === */
+.carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  gap: 10px;
+  margin: 20px 0;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.carousel-images {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  gap: 10px;
+}
+
+.carousel img {
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.carousel-arrow {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.carousel-arrow.left {
+  left: 10px;
+}
+
+.carousel-arrow.right {
+  right: 10px;
+}
+
+.carousel-arrow:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Fullscreen Modal */
+.fullscreen-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 40px); /* Avoid overlapping the taskbar */
+  background-color: rgba(0, 0, 0, 0.9);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.fullscreen-modal img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }

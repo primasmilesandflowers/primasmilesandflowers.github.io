@@ -1,4 +1,4 @@
-// Open a window and dynamically load content
+// Open a window by ID
 function openWindow(name) {
   // Hide all windows
   document
@@ -14,14 +14,11 @@ function openWindow(name) {
     // Dynamically load content for specific windows
     if (name === "about") {
       loadWindowContent("window-about", "about.html");
-    }
-    if (name === "projects") {
+    } else if (name === "projects") {
       loadWindowContent("window-projects", "projects.html");
-    }
-    if (name === "5-8site") {
+    } else if (name === "5-8site") {
       loadWindowContent("window-5-8site", "5-8site.html");
-    }
-    if (name === "portfolioSite") {
+    } else if (name === "portfolioSite") {
       loadWindowContent("window-portfolioSite", "portfolioSite.html");
     }
   }
@@ -47,7 +44,7 @@ function loadWindowContent(windowId, filePath) {
     });
 }
 
-// Drag functionality
+// Drag functionality for popup windows
 let currentDrag = null;
 let offsetX, offsetY;
 
@@ -79,7 +76,7 @@ let resizeDirection = null;
 let startX, startY, startWidth, startHeight, startTop, startLeft;
 
 function startResize(e, direction) {
-  currentResize = e.target.parentElement;
+  currentResize = e.target.closest(".winpopup, .window");
   resizeDirection = direction;
 
   const rect = currentResize.getBoundingClientRect();
@@ -101,10 +98,12 @@ function resizeMove(e) {
   const dx = e.clientX - startX;
   const dy = e.clientY - startY;
 
-  if (resizeDirection.includes("e"))
+  if (resizeDirection.includes("e")) {
     currentResize.style.width = `${Math.max(startWidth + dx, 200)}px`;
-  if (resizeDirection.includes("s"))
+  }
+  if (resizeDirection.includes("s")) {
     currentResize.style.height = `${Math.max(startHeight + dy, 200)}px`;
+  }
   if (resizeDirection.includes("w")) {
     const newWidth = Math.max(startWidth - dx, 200);
     currentResize.style.width = `${newWidth}px`;
@@ -125,20 +124,22 @@ function stopResize() {
   document.body.classList.remove("no-select");
 }
 
-// Maximize or restore a window
+// Maximize or restore a popup window
 function maximizeWindow(button) {
-  const windowElement = button.closest(".window");
+  const windowElement = button.closest(".winpopup, .window");
   const taskbarHeight = 40;
 
   if (
     windowElement.style.width === "100%" &&
     windowElement.style.height === `calc(100% - ${taskbarHeight}px)`
   ) {
+    // Restore to default size
     windowElement.style.width = "400px";
     windowElement.style.height = "auto";
-    windowElement.style.top = "100px";
-    windowElement.style.left = "150px";
+    windowElement.style.top = "150px";
+    windowElement.style.left = "200px";
   } else {
+    // Maximize to full screen
     windowElement.style.width = "100%";
     windowElement.style.height = `calc(100% - ${taskbarHeight}px)`;
     windowElement.style.top = "0";
@@ -146,9 +147,10 @@ function maximizeWindow(button) {
   }
 }
 
-// Close a window
+// Close a popup window
 function closeWindow(button) {
-  button.closest(".window").style.display = "none";
+  const windowElement = button.closest(".winpopup, .window");
+  windowElement.style.display = "none";
 }
 
 // Return to the homepage
@@ -160,18 +162,11 @@ function returnToHome() {
 function loadProjects() {
   const projects = [
     {
-      name: "Project 1 - Portfolio Site",
-      url: "https://yourproject1.com",
+      name: "Web App",
       icon: "https://img.icons8.com/ios-filled/24/folder-invoices.png",
     },
     {
-      name: "Project 2 - Mobile App UI",
-      url: "https://yourproject2.com",
-      icon: "https://img.icons8.com/ios-filled/24/folder-invoices.png",
-    },
-    {
-      name: "Project 3 - UX Case Study",
-      url: "https://yourproject3.com",
+      name: "Portfolio Site",
       icon: "https://img.icons8.com/ios-filled/24/folder-invoices.png",
     },
   ];

@@ -74,6 +74,21 @@ body.no-select {
   text-align: center;
 }
 
+/* Scale icon size down for smaller displays */
+@media (max-width: 700px) {
+  .icon {
+    width: 60px;
+    height: 60px;
+  }
+  .icon img {
+    width: 40px;
+    height: 40px;
+  }
+  .icon div {
+    font-size: 12px;
+  }
+}
+
 .icon:hover img {
   background-color: var(--icon-hover);
 }
@@ -89,6 +104,18 @@ body.no-select {
   z-index: 999;
   width: 400px;
   height: 400px;
+}
+
+@media (max-width: 700px) {
+  .window,
+  .winpopup {
+    width: 90vw; /* 90% of the viewport width */
+    height: 70vh; /* 70% of the viewport height */
+    max-width: 100vw;
+    max-height: 100vh;
+    left: 5vw; /* Optional: center horizontally if using absolute positioning */
+    top: 10vh; /* Optional: center vertically if using absolute positioning */
+  }
 }
 
 .window-header {
@@ -127,6 +154,71 @@ body.no-select {
   padding: 10px;
   box-sizing: border-box;
   color: #333;
+}
+
+/* === Popup Windows === */
+.winpopup {
+  position: absolute;
+  background-color: var(--window-bg);
+  border: 2px solid var(--window-border);
+  border-radius: 8px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  z-index: 999;
+  width: 400px;
+  height: 400px;
+}
+
+.winpopup-header {
+  background-color: var(--pink-dark);
+  color: white;
+  padding: 10px;
+  cursor: move;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.winpopup-controls {
+  display: flex;
+  gap: 5px;
+}
+
+.winpopup-controls button {
+  background-color: var(--pink-light);
+  color: var(--pink-dark);
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.winpopup-controls button:hover {
+  background-color: var(--icon-hover);
+}
+
+.winpopup-content {
+  display: flex; /* Use flexbox for centering */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  overflow: auto;
+  max-height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  color: #333;
+}
+
+/* Style for images in popup windows */
+.popup-image {
+  max-width: 100%; /* Shrink the image to fit the width of the popup */
+  max-height: 100%; /* Shrink the image to fit the height of the popup */
+  object-fit: scale-down; /* Ensure the image maintains its aspect ratio */
+  display: block; /* Ensure the image is treated as a block element */
+  margin: 10px auto; /* Add horizontal centering and vertical spacing */
+  padding: 20px 10px; /* Add padding: 20px for top/bottom, 10px for left/right */
+  box-sizing: border-box; /* Include padding in the element's total size */
 }
 
 /* Resize Handles */
@@ -396,69 +488,4 @@ body.no-select {
   white-space: pre-wrap; /* Preserve the formatting of the ASCII art */
   width: 50%; /* Set the width to 2/3 of the screen */
   height: auto; /* Allow height to adjust based on content */
-}
-
-/* === Popup Windows === */
-.winpopup {
-  position: absolute;
-  background-color: var(--window-bg);
-  border: 2px solid var(--window-border);
-  border-radius: 8px;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-  z-index: 999;
-  width: 400px;
-  height: 400px;
-}
-
-.winpopup-header {
-  background-color: var(--pink-dark);
-  color: white;
-  padding: 10px;
-  cursor: move;
-  font-weight: bold;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.winpopup-controls {
-  display: flex;
-  gap: 5px;
-}
-
-.winpopup-controls button {
-  background-color: var(--pink-light);
-  color: var(--pink-dark);
-  border: none;
-  padding: 4px 8px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 12px;
-}
-
-.winpopup-controls button:hover {
-  background-color: var(--icon-hover);
-}
-
-.winpopup-content {
-  display: flex; /* Use flexbox for centering */
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
-  overflow: auto;
-  max-height: 100%;
-  padding: 10px;
-  box-sizing: border-box;
-  color: #333;
-}
-
-/* Style for images in popup windows */
-.popup-image {
-  max-width: 100%; /* Shrink the image to fit the width of the popup */
-  max-height: 100%; /* Shrink the image to fit the height of the popup */
-  object-fit: scale-down; /* Ensure the image maintains its aspect ratio */
-  display: block; /* Ensure the image is treated as a block element */
-  margin: 10px auto; /* Add horizontal centering and vertical spacing */
-  padding: 20px 10px; /* Add padding: 20px for top/bottom, 10px for left/right */
-  box-sizing: border-box; /* Include padding in the element's total size */
 }

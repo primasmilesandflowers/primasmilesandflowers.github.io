@@ -135,7 +135,7 @@ function maximizeWindow(button) {
   ) {
     // Restore to default size
     windowElement.style.width = "400px";
-    windowElement.style.height = "auto";
+    windowElement.style.height = "400px";
     windowElement.style.top = "150px";
     windowElement.style.left = "200px";
   } else {
@@ -144,6 +144,41 @@ function maximizeWindow(button) {
     windowElement.style.height = `calc(100% - ${taskbarHeight}px)`;
     windowElement.style.top = "0";
     windowElement.style.left = "0";
+  }
+}
+
+// Minimize a popup window
+function minimizeWindow(button) {
+  const windowElement = button.closest(".winpopup, .window");
+  const contentElement = windowElement.querySelector(
+    ".window-content, .winpopup-content"
+  );
+  const taskbarButtons = document.getElementById("taskbar-buttons");
+
+  // Hide window content and shrink window
+  contentElement.style.display = "none";
+  windowElement.style.width = "0px";
+  windowElement.style.height = "0px";
+
+  // Add a button to the taskbar if not already present
+  let taskbarButton = document.querySelector(
+    `[data-window-id="${windowElement.id}"]`
+  );
+  if (!taskbarButton) {
+    taskbarButton = document.createElement("button");
+    taskbarButton.className = "taskbar-button";
+    taskbarButton.textContent = windowElement
+      .querySelector(".window-header, .winpopup-header")
+      .textContent.trim();
+    taskbarButton.setAttribute("data-window-id", windowElement.id);
+    taskbarButton.onclick = () => {
+      // Restore window when clicked
+      contentElement.style.display = "block";
+      windowElement.style.width = "400px";
+      windowElement.style.height = "400px";
+      taskbarButton.remove();
+    };
+    taskbarButtons.appendChild(taskbarButton);
   }
 }
 

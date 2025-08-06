@@ -1,10 +1,18 @@
 <!-- Popup Window -->
+<head>
+<script src="main.js"></script>
+</head>
 <div class="winpopup" style="top: 50px; left: 300px">
   <div class="winpopup-header" onmousedown="dragWindow(event, this)">
     System.out.print("Hello World!")
     <div class="winpopup-controls">
-      <button class="maximize-button" onclick="maximizeWindow(this)">🗖</button>
-      <button class="close-button" onclick="closeWindow(this)">✖</button>
+      <button class="minimize-button" onclick="minimizeWindow(this)">
+              🗕
+            </button>
+            <button class="maximize-button" onclick="maximizeWindow(this)">
+              🗖
+            </button>
+            <button class="close-button" onclick="closeWindow(this)">✖</button>
     </div>
   </div>
   <div class="winpopup-content">
@@ -25,11 +33,14 @@
     <div class="winpopup-header" onmousedown="dragWindow(event, this)">
       System.out.print("Hello World!")
       <div class="winpopup-controls">
-        <button class="maximize-button" onclick="maximizeWindow(this)">
-          🗖
-        </button>
-        <button class="close-button" onclick="closeWindow(this)">✖</button>
-      </div>
+        <button class="minimize-button" onclick="minimizeWindow(this)">
+              🗕
+            </button>
+            <button class="maximize-button" onclick="maximizeWindow(this)">
+              🗖
+            </button>
+            <button class="close-button" onclick="closeWindow(this)">✖</button>
+          </div>
     </div>
     <div class="winpopup-content">
       <img src="images/pic-of-me.jpg" alt="CFG Pic" class="popup-image" />

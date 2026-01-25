@@ -10,19 +10,28 @@ function openWindow(name) {
   if (win) {
     win.style.display = "block";
     win.style.zIndex = Date.now(); // Bring the window to the front
-
-    // Dynamically load content for specific windows
-    if (name === "about") {
-      loadWindowContent("window-about", "about.html");
-    } else if (name === "projects") {
-      loadWindowContent("window-projects", "projects.html");
-    } else if (name === "5-8site") {
-      loadWindowContent("window-5-8site", "5-8site.html");
-    } else if (name === "portfolioSite") {
-      loadWindowContent("window-portfolioSite", "portfolioSite.html");
-    }
   }
 }
+
+// Load popup windows from popup-windows.html
+fetch("popup-windows.html")
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Failed to load popup-windows.html");
+    }
+    return response.text();
+  })
+  .then((html) => {
+    document.getElementById("popup-windows-container").innerHTML = html;
+
+    // Automatically display all popup windows on page load
+    document.querySelectorAll(".winpopup").forEach((win) => {
+      win.style.display = "block";
+    });
+  })
+  .catch((error) => {
+    console.error("Error loading popup-windows.html:", error);
+  });
 
 // Load content into a window
 function loadWindowContent(windowId, filePath) {
@@ -151,7 +160,7 @@ function maximizeWindow(button) {
 function minimizeWindow(button) {
   const windowElement = button.closest(".winpopup, .window");
   const contentElement = windowElement.querySelector(
-    ".window-content, .winpopup-content"
+    ".window-content, .winpopup-content",
   );
   const taskbarButtons = document.getElementById("taskbar-buttons");
 
@@ -162,7 +171,7 @@ function minimizeWindow(button) {
 
   // Add a button to the taskbar if not already present
   let taskbarButton = document.querySelector(
-    `[data-window-id="${windowElement.id}"]`
+    `[data-window-id="${windowElement.id}"]`,
   );
   if (!taskbarButton) {
     taskbarButton = document.createElement("button");
@@ -193,41 +202,23 @@ function returnToHome() {
   window.location.href = "index.html";
 }
 
-// Load projects dynamically
-function loadProjects() {
-  const projects = [
-    {
-      name: "Web App",
-      icon: "https://img.icons8.com/ios-filled/24/folder-invoices.png",
-    },
-    {
-      name: "Portfolio Site",
-      icon: "https://img.icons8.com/ios-filled/24/folder-invoices.png",
-    },
-  ];
-
-  const fileExplorer = document.querySelector(
-    "#window-projects .file-explorer"
-  );
-  fileExplorer.innerHTML = "";
-
-  projects.forEach((project) => {
-    const fileRow = document.createElement("div");
-    fileRow.className = "file-row";
-    fileRow.onclick = () => window.open(project.url, "_blank");
-
-    const img = document.createElement("img");
-    img.src = project.icon;
-    img.alt = "Project Icon";
-
-    const span = document.createElement("span");
-    span.textContent = project.name;
-
-    fileRow.appendChild(img);
-    fileRow.appendChild(span);
-    fileExplorer.appendChild(fileRow);
+// Load projects from projects.html
+fetch("projects.html")
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Failed to load projects.html");
+    }
+    return response.text();
+  })
+  .then((html) => {
+    const fileExplorer = document.querySelector(
+      "#window-projects .file-explorer",
+    );
+    fileExplorer.innerHTML = html;
+  })
+  .catch((error) => {
+    console.error("Error loading projects.html:", error);
   });
-}
 
 // Tally Form Integration
 function openTallyPopup() {
@@ -272,4 +263,25 @@ function openFullscreen(image) {
 function closeFullscreen() {
   const modal = document.getElementById("fullscreenModal");
   modal.style.display = "none";
+}
+
+// Initialize carousel on page load
+function openFullscreen(img) {
+  const modal = document.getElementById("fullscreenModal");
+  const fullscreenImage = document.getElementById("fullscreenImage");
+  fullscreenImage.src = img.src;
+  modal.style.display = "flex";
+}
+
+function closeFullscreen() {
+  const modal = document.getElementById("fullscreenModal");
+  modal.style.display = "none";
+}
+
+function prevImage() {
+  // Add logic to show previous image
+}
+
+function nextImage() {
+  // Add logic to show next image
 }

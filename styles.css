@@ -19,10 +19,7 @@
   font-family: var(--font-main);
 }
 
-body,
 html {
-  height: 100%;
-  width: 100%;
   background-color: var(--desktop-bg);
   overflow: hidden;
 }
@@ -32,143 +29,139 @@ body.no-select {
   cursor: default;
 }
 
-/* === Desktop === */
-.desktop {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  background-color: var(--desktop-bg);
-  background-image: linear-gradient(
-    135deg,
-    var(--pink-light) 0%,
-    var(--desktop-bg) 100%
-  );
+@media (max-width: 500px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+@media (max-height: 400px) {
+  html {
+    font-size: 12px;
+  }
 }
 
 /* === Icons === */
 .icon {
-  position: absolute;
-  width: 100px; /* Increase the width of the icon container */
-  height: 100px; /* Increase the height of the icon container */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: 140px;
+  width: 100px;
+  height: 100px;
   cursor: pointer;
   color: var(--pink-dark);
-  font-size: 14px;
+  margin-top: 40px;
+  margin-left: 40px;
+  align-items: center;
+}
+
+#icon-text {
+  font-size: 16px;
+  align-self: center;
+  text-align: center;
+  width: 70%;
+  color: rgb(49, 49, 49);
 }
 
 .icon img {
-  width: 64px; /* Increase the size of the icon image */
-  height: 64px; /* Match the width for a square icon */
-  margin-bottom: 8px; /* Add spacing between the image and text */
+  width: 64px;
+  height: 64px;
+  margin-bottom: 8px;
   background-color: var(--icon-bg);
   padding: 5px;
   border-radius: 8px;
-  transition: background-color 0.3s;
-}
-
-.icon div {
-  font-size: 16px; /* Increase the font size of the text */
-  text-align: center;
-}
-
-/* Scale icon size down for smaller displays */
-@media (max-width: 700px) {
-  .icon {
-    width: 60px;
-    height: 60px;
-  }
-  .icon img {
-    width: 40px;
-    height: 40px;
-  }
-  .icon div {
-    font-size: 12px;
-  }
 }
 
 .icon:hover img {
   background-color: var(--icon-hover);
 }
 
-/* === Windows === */
-.window {
-  position: absolute;
-  background-color: var(--window-bg);
-  border: 2px solid var(--window-border);
+/* === Tally Button === */
+.tally-button {
+  background-color: var(--pink-light);
+  color: var(--pink-dark);
+  border: 2px solid var(--pink-dark);
   border-radius: 8px;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-  z-index: 999;
-  width: 400px;
-  height: 400px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-family: var(--font-main);
+  cursor: pointer;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
 }
 
-@media (max-width: 700px) {
-  .window,
-  .winpopup {
-    width: 90vw; /* 90% of the viewport width */
-    height: 70vh; /* 70% of the viewport height */
-    max-width: 100vw;
-    max-height: 100vh;
-    left: 5vw; /* Optional: center horizontally if using absolute positioning */
-    top: 10vh; /* Optional: center vertically if using absolute positioning */
+.tally-button:hover {
+  background-color: var(--pink-dark);
+  color: #fff;
+}
+
+/* Responsive Icon Sizing */
+@media (max-width: 500px) {
+  .icon {
+    width: 80px;
+    height: 80px;
+    margin-left: 20px;
+    margin-top: 20px;
+  }
+  .icon img {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 4px;
+    padding: 2px;
+  }
+  #icon-text {
+    font-size: 8px;
+    width: 50%;
   }
 }
 
-.window-header {
-  background-color: var(--pink-dark);
-  color: white;
-  padding: 10px;
-  cursor: move;
-  font-weight: bold;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+@media (max-height: 400px) {
+  .icon {
+    width: 60px;
+    height: 60px;
+    margin-left: 20px;
+    margin-top: 20px;
+  }
+  .icon img {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 4px;
+    padding: 2px;
+  }
+  #icon-text {
+    font-size: 8px;
+    width: 50%;
+  }
 }
 
-.window-controls {
-  display: flex;
-  gap: 5px;
-}
-
-.window-controls button {
-  background-color: var(--pink-light);
-  color: var(--pink-dark);
-  border: none;
-  padding: 4px 8px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 12px;
-}
-
-.window-controls button:hover {
-  background-color: var(--icon-hover);
-}
-
-.window-content {
-  overflow: auto;
-  max-height: 100%;
-  padding: 10px;
-  box-sizing: border-box;
-  color: #333;
-}
-
-/* === Popup Windows === */
+/* === Windows === */
+.window,
 .winpopup {
   position: absolute;
   background-color: var(--window-bg);
   border: 2px solid var(--window-border);
   border-radius: 8px;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
   z-index: 999;
   width: 400px;
   height: 400px;
+  top: 100px;
+  left: 150px;
+  display: none;
 }
 
+#popup-text {
+  top: 50px;
+  left: 300px;
+}
+
+#popup-image {
+  top: 275px;
+  left: 400px;
+}
+
+.window-header,
 .winpopup-header {
   background-color: var(--pink-dark);
   color: white;
@@ -178,13 +171,16 @@ body.no-select {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-size: 14px;
 }
 
+.window-controls,
 .winpopup-controls {
   display: flex;
   gap: 5px;
 }
 
+.window-controls button,
 .winpopup-controls button {
   background-color: var(--pink-light);
   color: var(--pink-dark);
@@ -192,33 +188,118 @@ body.no-select {
   padding: 4px 8px;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 10px;
 }
 
+.window-controls button:hover,
 .winpopup-controls button:hover {
   background-color: var(--icon-hover);
 }
 
+.window-content {
+  overflow-y: scroll;
+  max-height: calc(100% - 50px);
+  color: #333;
+  padding: 10px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+/* === Popup Window Content === */
+
 .winpopup-content {
-  display: flex; /* Use flexbox for centering */
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
+  display: flex;
+  justify-content: center;
   overflow: auto;
-  max-height: 100%;
+  height: calc(100% - 50px);
   padding: 10px;
   box-sizing: border-box;
   color: #333;
 }
 
-/* Style for images in popup windows */
+/* Style for image in popup windows */
 .popup-image {
-  max-width: 100%; /* Shrink the image to fit the width of the popup */
-  max-height: 100%; /* Shrink the image to fit the height of the popup */
-  object-fit: scale-down; /* Ensure the image maintains its aspect ratio */
-  display: block; /* Ensure the image is treated as a block element */
-  margin: 10px auto; /* Add horizontal centering and vertical spacing */
-  padding: 20px 10px; /* Add padding: 20px for top/bottom, 10px for left/right */
-  box-sizing: border-box; /* Include padding in the element's total size */
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 500px) {
+  .window,
+  .winpopup {
+    position: absolute;
+    width: 70%;
+    height: 30%;
+    top: 20px;
+    left: 5%;
+  }
+
+  .window-header,
+  .winpopup-header {
+    padding: 5px;
+  }
+
+  .window-controls button,
+  .winpopup-controls button {
+    padding: 2px 4px;
+    font-size: 10px;
+  }
+
+  .window-content,
+  .winpopup-content {
+    padding: 5px;
+  }
+
+  #popup-text {
+    top: 120px;
+    left: 5%;
+  }
+
+  #popup-image {
+    top: 280px;
+    left: 7%;
+  }
+}
+
+@media (max-height: 400px) {
+  .window,
+  .winpopup {
+    position: absolute;
+    width: 30%;
+    height: 70%;
+    top: 20px;
+    left: 5%;
+  }
+
+  .window-header,
+  .winpopup-header {
+    padding: 5px;
+    font-size: 10px;
+  }
+
+  .window-controls button,
+  .winpopup-controls button {
+    padding: 2px 4px;
+    font-size: 10px;
+  }
+
+  .window-content,
+  .winpopup-content {
+    padding: 5px;
+  }
+
+  #popup-text {
+    top: 40px;
+    left: 40%;
+  }
+
+  #popup-image {
+    top: 20px;
+    left: 60%;
+  }
 }
 
 /* Resize Handles */
@@ -330,10 +411,10 @@ body.no-select {
 
 /* === Taskbar === */
 .taskbar {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
-  height: 40px;
+  height: 60px;
   background-color: var(--taskbar-bg);
   display: flex;
   align-items: center;
@@ -383,109 +464,120 @@ body.no-select {
   vertical-align: middle;
 }
 
-/* === Tally Button === */
-.tally-button {
-  background-color: var(--pink-light);
-  color: var(--pink-dark);
-  border: 2px solid var(--pink-dark);
-  border-radius: 8px;
-  padding: 10px 20px;
-  font-size: 16px;
-  font-family: var(--font-main);
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
+@media (max-height: 400px) {
+  .taskbar {
+    height: 40px;
+    font-size: 10px;
+  }
+
+  .taskbar .start-button,
+  .taskbar .taskbar-button {
+    padding: 4px 8px;
+    font-size: 10px;
+  }
+
+  .taskbar-icon {
+    width: 16px;
+    height: 16px;
+  }
 }
 
-.tally-button:hover {
-  background-color: var(--pink-dark);
-  color: #fff;
-}
-
-/* === Carousel === */
-.carousel {
+/* === Carousel for portfolioSite.html=== */
+.content-container {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: relative;
-  gap: 10px;
-  margin: 20px 0;
-  overflow: hidden;
-  max-width: 100%;
+  padding: 20px;
+  background-color: var(--window-bg);
+  border: 2px solid var(--window-border);
+  border-radius: 8px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+  max-width: 900px;
+  margin: 50px auto;
+  gap: 20px;
 }
 
-.carousel-images {
+.content-container h1 {
+  font-size: 24px;
+  color: var(--pink-dark);
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.content-container .blurb {
+  font-size: 14px;
+  color: #333;
+  line-height: 1.6;
+  text-align: left;
+}
+
+.content-container iframe {
+  width: 100%;
+  height: 450px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.carousel {
   display: flex;
-  transition: transform 0.5s ease-in-out;
+  overflow-x: auto;
   gap: 10px;
+  margin: 20px 0;
 }
 
 .carousel img {
   max-width: 100%;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
 }
 
 .carousel-arrow {
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
+  background-color: var(--window-bg);
   border: none;
-  padding: 10px;
-  border-radius: 50%;
+  color: var(--pink-dark);
+  font-size: 24px;
   cursor: pointer;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
 }
 
-.carousel-arrow.left {
-  left: 10px;
+.carousel-images {
+  display: flex;
+  gap: 10px;
 }
 
-.carousel-arrow.right {
-  right: 10px;
-}
-
-.carousel-arrow:hover {
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
-/* Fullscreen Modal */
 .fullscreen-modal {
   display: none;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: calc(100% - 40px); /* Avoid overlapping the taskbar */
-  background-color: rgba(0, 0, 0, 0.9);
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
   justify-content: center;
   align-items: center;
-  z-index: 1000;
 }
 
 .fullscreen-modal img {
   max-width: 90%;
   max-height: 90%;
   border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 /* === Text Overlay === */
 .text-overlay {
-  position: absolute; /* Position it over the background */
-  top: 65%; /* Center vertically */
-  left: 75%; /* Center horizontally */
-  transform: translate(-50%, -50%); /* Adjust for centering */
-  text-align: center; /* Center the text */
-  color: rgba(98, 79, 79, 0.336); /* White text with transparency */
-  font-family: "Courier New", Courier, monospace; /* Monospace font for ASCII art */
-  font-size: 2vw; /* Scale font size relative to the viewport width */
-  line-height: 1.2; /* Adjust line spacing for better readability */
-  z-index: 10; /* Ensure it appears above the background */
-  pointer-events: none; /* Prevent interaction with the overlay */
-  white-space: pre-wrap; /* Preserve the formatting of the ASCII art */
-  width: 50%; /* Set the width to 2/3 of the screen */
-  height: auto; /* Allow height to adjust based on content */
+  position: absolute;
+  top: 65%;
+  left: 75%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: rgba(98, 79, 79, 0.336);
+  font-family: "Courier New", Courier, monospace;
+  font-size: 2vw;
+  line-height: 1.2;
+  z-index: 10;
+  pointer-events: none;
+  white-space: pre-wrap;
+  width: 50%;
+  height: auto;
 }

@@ -10,6 +10,15 @@ function openWindow(name) {
   if (win) {
     win.style.display = "block";
     win.style.zIndex = Date.now(); // Bring the window to the front
+
+    // Load content for specific windows if not already loaded
+    if (name === "5-8site" || name === "portfolioSite") {
+      const contentElement = win.querySelector(".window-content");
+      // Load content only if the content element is empty
+      if (contentElement.children.length === 0) {
+        loadWindowContent(`window-${name}`, `${name}.html`);
+      }
+    }
   }
 }
 
@@ -233,24 +242,27 @@ function openTallyPopup() {
 let currentIndex = 0;
 
 function updateCarousel() {
-  const images = document.querySelectorAll(".carousel-images img");
-  const carouselImages = document.querySelector(".carousel-images");
-  const imageWidth = images[0].clientWidth + 10; // Include gap
-  carouselImages.style.transform = `translateX(-${
-    currentIndex * imageWidth
-  }px)`;
+  const slidesContainer = document.querySelector(".carousel-slides");
+  if (slidesContainer) {
+    const slideWidth = slidesContainer.clientWidth;
+    slidesContainer.scrollLeft = currentIndex * slideWidth;
+  }
 }
 
 function prevImage() {
-  const images = document.querySelectorAll(".carousel-images img");
-  currentIndex = (currentIndex - 1 + images.length) % images.length;
-  updateCarousel();
+  const slides = document.querySelectorAll(".slide");
+  if (slides.length > 0) {
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    updateCarousel();
+  }
 }
 
 function nextImage() {
-  const images = document.querySelectorAll(".carousel-images img");
-  currentIndex = (currentIndex + 1) % images.length;
-  updateCarousel();
+  const slides = document.querySelectorAll(".slide");
+  if (slides.length > 0) {
+    currentIndex = (currentIndex + 1) % slides.length;
+    updateCarousel();
+  }
 }
 
 function openFullscreen(image) {
@@ -263,25 +275,4 @@ function openFullscreen(image) {
 function closeFullscreen() {
   const modal = document.getElementById("fullscreenModal");
   modal.style.display = "none";
-}
-
-// Initialize carousel on page load
-function openFullscreen(img) {
-  const modal = document.getElementById("fullscreenModal");
-  const fullscreenImage = document.getElementById("fullscreenImage");
-  fullscreenImage.src = img.src;
-  modal.style.display = "flex";
-}
-
-function closeFullscreen() {
-  const modal = document.getElementById("fullscreenModal");
-  modal.style.display = "none";
-}
-
-function prevImage() {
-  // Add logic to show previous image
-}
-
-function nextImage() {
-  // Add logic to show next image
 }

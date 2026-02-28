@@ -1,5 +1,140 @@
-/* === Base Variables === */
-:root {
+/* --------------------------------------------------------------------------------------------------- CSS BY Prima Fombo  ---------------------------------------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------------------------------- IMPORTED FONTS  -------------------------------------------------------------------------------------------------------------- */
+@import url("https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+/* --------------------------------------------------------------------------------------------------- CSS RESET  ------------------------------------------------------------------------------------------------------------------- */
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* --------------------------------------------------------------------------------------------------- ROOT VARIABLES  -------------------------------------------------------------------------------------------------------------- */
+root {
   --pink-light: #ffccdd;
   --pink-dark: #cc3366;
   --desktop-bg: #ffe6f0;
@@ -8,19 +143,14 @@
   --taskbar-bg: #cc3366;
   --icon-bg: #ffe6f0;
   --icon-hover: #ff99bb;
-  --font-main: "Courier New", Courier, monospace;
+  --font-main: "Courier Prime", Courier, monospace;
+
+  background-color: var(--desktop-bg);
 }
 
-/* === Global Reset & Base === */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: var(--font-main);
-}
+/*  ------------------------------------------------------------------------------------------------- GLOBAL STYLES  ---------------------------------------------------------------------------------------------------------------  */
 
 html {
-  background-color: var(--desktop-bg);
   overflow: hidden;
 }
 
@@ -210,7 +340,6 @@ body.no-select {
 .winpopup-content {
   display: flex;
   justify-content: center;
-  overflow: auto;
   height: calc(100% - 50px);
   padding: 10px;
   box-sizing: border-box;
@@ -302,77 +431,6 @@ body.no-select {
   }
 }
 
-/* Resize Handles */
-.resize-handle {
-  position: absolute;
-  background: transparent;
-  z-index: 10;
-}
-
-.resize-n {
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 5px;
-  cursor: n-resize;
-}
-
-.resize-e {
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 5px;
-  cursor: e-resize;
-}
-
-.resize-s {
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 5px;
-  cursor: s-resize;
-}
-
-.resize-w {
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 5px;
-  cursor: w-resize;
-}
-
-.resize-ne {
-  top: 0;
-  right: 0;
-  width: 10px;
-  height: 10px;
-  cursor: ne-resize;
-}
-
-.resize-nw {
-  top: 0;
-  left: 0;
-  width: 10px;
-  height: 10px;
-  cursor: nw-resize;
-}
-
-.resize-se {
-  bottom: 0;
-  right: 0;
-  width: 10px;
-  height: 10px;
-  cursor: se-resize;
-}
-
-.resize-sw {
-  bottom: 0;
-  left: 0;
-  width: 10px;
-  height: 10px;
-  cursor: sw-resize;
-}
-
 /* === File Explorer === */
 .file-explorer {
   display: flex;
@@ -381,7 +439,6 @@ body.no-select {
   padding: 10px;
   background-color: var(--window-bg);
   height: calc(100% - 50px);
-  overflow-y: auto;
 }
 
 .file-row {
@@ -443,7 +500,7 @@ body.no-select {
   background-color: var(--pink-light);
   color: var(--pink-dark);
   border: none;
-  padding: 6px 12px;
+  padding: 10px;
   border-radius: 4px;
   margin-left: 10px;
   font-weight: bold;
@@ -487,15 +544,11 @@ body.no-select {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 20px;
-  background-color: var(--window-bg);
-  border: 2px solid var(--window-border);
-  border-radius: 8px;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
-  max-width: 900px;
-  margin: 50px auto;
+  /* The justify-content and other properties were causing issues with layout */
+  padding: 0;
   gap: 20px;
+  width: 100%;
+  height: 100%;
 }
 
 .content-container h1 {
@@ -510,40 +563,74 @@ body.no-select {
   color: #333;
   line-height: 1.6;
   text-align: left;
+  transform: translateX(45%);
+  width: 50%;
+  height: auto;
 }
 
 .content-container iframe {
-  width: 100%;
-  height: 450px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  width: 40%;
+  height: 400px;
+  border: none;
   border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transform: translate(-65%, -94%);
+  position: sticky;
 }
 
-.carousel {
+.carousel-container {
+  max-width: 600px;
+  width: 90%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.carousel-slides {
   display: flex;
-  overflow-x: auto;
-  gap: 10px;
-  margin: 20px 0;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
 }
 
-.carousel img {
-  max-width: 100%;
+.carousel-slides::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
+}
+
+.slide {
+  flex: 0 0 100%;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  scroll-snap-align: start;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .carousel-arrow {
-  background-color: var(--window-bg);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.7);
   border: none;
   color: var(--pink-dark);
   font-size: 24px;
   cursor: pointer;
+  z-index: 1;
+  padding: 10px;
+  border-radius: 50%;
 }
 
-.carousel-images {
-  display: flex;
-  gap: 10px;
+.carousel-arrow:hover {
+  background-color: white;
+}
+
+.carousel-arrow.left {
+  left: 10px;
+}
+
+.carousel-arrow.right {
+  right: 10px;
 }
 
 .fullscreen-modal {

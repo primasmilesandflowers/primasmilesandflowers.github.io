@@ -8,7 +8,7 @@
   </head>
 
   <body>
-    <div class="window">
+    <div class="content-container">
       <h1>...and of course, this website</h1>
       <div class="blurb">
         Surely I would be selling myself short if I did not include the website
@@ -19,9 +19,7 @@
         resource that I will continue to tweak for the duration of my
         professional career, but have found my passion in UI/UX design and
         front-end development.
-
         <br /><br />
-
         Funny enough, in my opinion, the most true-to-life encounter that I
         faced while making this site was how it has completely morphed from what
         my original wireframe was. When I set out initially to make this site, I
@@ -34,45 +32,45 @@
         cats, and I love the color pink.
       </div>
       <iframe
-        style="border: 1px solid rgba(0, 0, 0, 0.1)"
-        width="800"
-        height="450"
         src="https://embed.figma.com/design/a4fPSRIwMphO6p425TzZ0P/portfolio-wireframe?node-id=0-1&embed-host=share"
         allowfullscreen
       ></iframe>
-      <div class="carousel">
+      <div class="carousel-container">
         <button class="carousel-arrow left" onclick="prevImage()">
           &#10094;
         </button>
-        <div class="carousel-images">
+        <div class="carousel-slides">
           <img
             src="images/port-ss1.jpg"
-            alt="Image 1"
+            alt="Portfolio Sketch 1"
             onclick="openFullscreen(this)"
+            class="slide"
           />
           <img
             src="images/port-ss2-3.jpg"
-            alt="Image 2"
+            alt="Portfolio Sketch 2"
             onclick="openFullscreen(this)"
+            class="slide"
           />
           <img
             src="images/port-ss3-7.jpg"
-            alt="Image 3"
+            alt="Icons Concept Image"
             onclick="openFullscreen(this)"
+            class="slide"
           />
         </div>
         <button class="carousel-arrow right" onclick="nextImage()">
           &#10095;
         </button>
       </div>
-      <!-- Fullscreen Modal -->
-      <div
-        id="fullscreenModal"
-        class="fullscreen-modal"
-        onclick="closeFullscreen()"
-      >
-        <img id="fullscreenImage" />
-      </div>
+    </div>
+    <!-- Fullscreen Modal -->
+    <div
+      id="fullscreenModal"
+      class="fullscreen-modal"
+      onclick="closeFullscreen()"
+    >
+      <img id="fullscreenImage" />
     </div>
   </body>
 </html>

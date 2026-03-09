@@ -5,307 +5,167 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>primafombOS | Web Developer</title>
     <link rel="stylesheet" href="styles.css" />
-    <script async src="https://tally.so/widgets/embed.js"></script>
-    <script src="main.js"></script>
   </head>
 
   <body>
-      <!-- Icons -->
-      <nav>
-        <ul>
-          <li class="icon" onclick="openWindow('about')">
-              <img src="https://img.icons8.com/ios-filled/50/000000/info.png" alt="About Icon"/>
-              <span id="icon-text">About</span>
-          </li>
-          <li class="icon" onclick="openWindow('projects')">
-              <img src="https://img.icons8.com/ios-filled/50/000000/code.png" alt="Projects Icon"/>
-              <span id="icon-text">Projects</span>
-          </li>
-          <li class="icon" data-tally-open="wMG8O8" data-tally-width="390">
-              <img src="https://img.icons8.com/ios-filled/100/chat.png" alt="Chat Icon"/>
-              <span id="icon-text">Chat</span>
-          </li>
-        </ul>
-      </nav>
+
+    <!-- Icons -->
+    <nav class="icon">
+      <ul>
+        <li id="about-icon" onclick="openWindow('about')">
+          <img src="https://img.icons8.com/ios-filled/50/000000/info.png" alt="About Icon"/>
+          <span>About</span>
+        </li>
+        <li id="projects-icon" onclick="openWindow('projects')">
+          <img src="https://img.icons8.com/ios-filled/50/000000/code.png" alt="Projects Icon"/>
+          <span>Projects</span>
+        </li>
+        <li id="chat-icon" onclick="openTallyPopup()" data-tally-open="wMG8O8" data-tally-width="385">
+          <img src="https://img.icons8.com/ios-filled/100/chat.png" alt="Chat Icon"/>
+          <span>Chat</span>
+        </li>
+      </ul>
+    </nav>
  
-      <!-- Dynamically-loaded "Hello World" windows -->
-      <section id="popup-windows-container"></section>
+    <!-- Dynamically-loaded "Hello World" windows -->
+    <section id="popup-windows-container"></section>
 
-      <!-- Windows -->
-      <div class="window" id="window-about">
-        <div class="window-header" onmousedown="dragWindow(event, this)"> About
-          <div class="window-controls">
-            <button class="minimize-button" onclick="minimizeWindow(this)">
-              _
-            </button>
-            <button class="maximize-button" onclick="maximizeWindow(this)">
-              🗖
-            </button>
-            <button class="close-button" onclick="closeWindow(this)">X</button>
-          </div>
-        </div>
+    <!-- About Window -->
+    <section class="window" id="window-about">
+      <h1 class="window-header">
+        <cite id="header">About</cite>
+          <button id="minimize-button" class="minimize-button" onclick="minimizeWindow(this)">_</button>
+          <button id="maximize-button" onclick="maximizeWindow(this)">🗖</button>
+          <button id="close-button" onclick="closeWindow(this)">X</button>
+      </h1>
         
-        <div class="window-content">
-          <p>Hey y'all, my name's Prima! I am currently an undergraduate student studying
-          Graphic Information Technology at Arizona State. My main focus with my studies is to get my
-          foot in the door with UI/UX design. What better way to do that, than to
-          craft a portfolio website (like, the one you are on right now...) from
-          scratch? <br />
-          <br />
-          I have had a blast crafting this site and finally putting my creative skills
-          to good use. Getting familiar with industry-utilized applications like
-          Figma, while teaching myself the foundations of HTML, JavaScript, and CSS
-          have all been so insightful. Not only that, but my personal productivity
-          levels have skyrocketed! This website will continue to grow and evolve, as
-          will I, as time elapses. Thanks for following along. <br />
-          <br />
-          Lots of Love, <br />
-          <br />
-          Prima :3</p>
-        </div>
-        
-        <div
-          class="resize-handle resize-n"
-          onmousedown="startResize(event, 'n')"
-        ></div>
-        <div
-          class="resize-handle resize-e"
-          onmousedown="startResize(event, 'e')"
-        ></div>
-        <div
-          class="resize-handle resize-s"
-          onmousedown="startResize(event, 's')"
-        ></div>
-        <div
-          class="resize-handle resize-w"
-          onmousedown="startResize(event, 'w')"
-        ></div>
-        <div
-          class="resize-handle resize-ne"
-          onmousedown="startResize(event, 'ne')"
-        ></div>
-        <div
-          class="resize-handle resize-nw"
-          onmousedown="startResize(event, 'nw')"
-        ></div>
-        <div
-          class="resize-handle resize-se"
-          onmousedown="startResize(event, 'se')"
-        ></div>
-        <div
-          class="resize-handle resize-sw"
-          onmousedown="startResize(event, 'sw')"
-        ></div>
-      </div>
+      <p class="window-content">
+        Hey y'all, my name's Prima! I am currently an undergraduate student studying
+        Graphic Information Technology at Arizona State. My main focus with my studies is to get my
+        foot in the door with UI/UX design. What better way to do that, than to
+        craft a portfolio website (like, the one you are on right now...) from
+        scratch? <br /><br />
+        I have had a blast crafting this site and finally putting my creative skills
+        to good use. Getting familiar with industry-utilized applications like
+        Figma, while teaching myself the foundations of HTML, JavaScript, and CSS
+        have all been so insightful. Not only that, but my personal productivity
+        levels have skyrocketed! This website will continue to grow and evolve, as
+        will I, as time elapses. Thanks for following along. <br />
+        <br />
+        Lots of Love, <br />
+        <br />
+        Prima :3
+      </p>
+    </section>
 
-      
-      <div class="window" id="window-projects">
-        <div class="window-header" onmousedown="dragWindow(event, this)">
-          📁 File Explorer
-          <div class="window-controls">
-            <button class="minimize-button" onclick="minimizeWindow(this)">
-              _
-            </button>
-            <button class="maximize-button" onclick="maximizeWindow(this)">
-              🗖
-            </button>
-            <button class="close-button" onclick="closeWindow(this)">X</button>
-          </div>
-        </div>
-        <div
-          class="window-content file-explorer"
-          style="overflow: auto; max-height: 100%"
-        >
-          <!-- Content from projects.html will be dynamically loaded here -->
-        </div>
-        <div
-          class="resize-handle resize-n"
-          onmousedown="startResize(event, 'n')"
-        ></div>
-        <div
-          class="resize-handle resize-e"
-          onmousedown="startResize(event, 'e')"
-        ></div>
-        <div
-          class="resize-handle resize-s"
-          onmousedown="startResize(event, 's')"
-        ></div>
-        <div
-          class="resize-handle resize-w"
-          onmousedown="startResize(event, 'w')"
-        ></div>
-        <div
-          class="resize-handle resize-ne"
-          onmousedown="startResize(event, 'ne')"
-        ></div>
-        <div
-          class="resize-handle resize-nw"
-          onmousedown="startResize(event, 'nw')"
-        ></div>
-        <div
-          class="resize-handle resize-se"
-          onmousedown="startResize(event, 'se')"
-        ></div>
-        <div
-          class="resize-handle resize-sw"
-          onmousedown="startResize(event, 'sw')"
-        ></div>
-      </div>
+    <!-- Projects Window -->
+    <section class="window" id="window-projects">
+      <h1 class="window-header">
+        <cite id="header">📁 File Explorer</cite>
+        <button id="minimize-button" class="minimize-button" onclick="minimizeWindow(this)">_</button>
+        <button id="maximize-button" onclick="maximizeWindow(this)">🗖</button>
+        <button id="close-button" onclick="closeWindow(this)">X</button>
+      </h1>
+      <!-- Content from projects.html will be dynamically loaded here -->
+      <ul class="file-explorer"></ul>
+    </section>
 
-      <div
-        class="window"
-        id="window-5-8site"
-        style="top: 100px; left: 150px; display: none"
-      >
-        <div class="window-header" onmousedown="dragWindow(event, this)">
-          Web Application Prototype
-          <div class="window-controls">
-            <button class="minimize-button" onclick="minimizeWindow(this)">
-              _
-            </button>
-            <button class="maximize-button" onclick="maximizeWindow(this)">
-              🗖
-            </button>
-            <button class="close-button" onclick="closeWindow(this)">X</button>
-          </div>
-        </div>
-        <div class="window-content" style="overflow: auto; max-height: 100%">
-          <!-- Content from 5-8site.html will be dynamically loaded here -->
-        </div>
-        <div
-          class="resize-handle resize-n"
-          onmousedown="startResize(event, 'n')"
-        ></div>
-        <div
-          class="resize-handle resize-e"
-          onmousedown="startResize(event, 'e')"
-        ></div>
-        <div
-          class="resize-handle resize-s"
-          onmousedown="startResize(event, 's')"
-        ></div>
-        <div
-          class="resize-handle resize-w"
-          onmousedown="startResize(event, 'w')"
-        ></div>
-        <div
-          class="resize-handle resize-ne"
-          onmousedown="startResize(event, 'ne')"
-        ></div>
-        <div
-          class="resize-handle resize-nw"
-          onmousedown="startResize(event, 'nw')"
-        ></div>
-        <div
-          class="resize-handle resize-se"
-          onmousedown="startResize(event, 'se')"
-        ></div>
-        <div
-          class="resize-handle resize-sw"
-          onmousedown="startResize(event, 'sw')"
-        ></div>
-      </div>
+    <!-- 5-8site Window -->
+    <section class="window" id="window-5-8site">
+      <h1 class="window-header">
+        <cite id="header">Web Application Prototype</cite>
+        <button id="minimize-button" class="minimize-button" onclick="minimizeWindow(this)">_</button>
+        <button id="maximize-button" onclick="maximizeWindow(this)">🗖</button>
+        <button id="close-button" onclick="closeWindow(this)">X</button>
+      </h1>
+      <!-- Content from 5-8site.html will be dynamically loaded here -->
+      <section id="window-5-8-content" class="window-content"></section>
+    </section>
 
-      <div
-        class="window"
-        id="window-portfolioSite"
-        style="top: 100px; left: 150px; display: none"
-      >
-        <div class="window-header" onmousedown="dragWindow(event, this)">
-          Portfolio Website
-          <div class="window-controls">
-            <button class="minimize-button" onclick="minimizeWindow(this)">
-              _
-            </button>
-            <button class="maximize-button" onclick="maximizeWindow(this)">
-              🗖
-            </button>
-            <button class="close-button" onclick="closeWindow(this)">X</button>
-          </div>
-        </div>
-        <div class="window-content" style="overflow: auto; max-height: 100%">
-          <!-- Content from portfolioSite.html will be dynamically loaded here -->
-        </div>
-        <div
-          class="resize-handle resize-n"
-          onmousedown="startResize(event, 'n')"
-        ></div>
-        <div
-          class="resize-handle resize-e"
-          onmousedown="startResize(event, 'e')"
-        ></div>
-        <div
-          class="resize-handle resize-s"
-          onmousedown="startResize(event, 's')"
-        ></div>
-        <div
-          class="resize-handle resize-w"
-          onmousedown="startResize(event, 'w')"
-        ></div>
-        <div
-          class="resize-handle resize-ne"
-          onmousedown="startResize(event, 'ne')"
-        ></div>
-        <div
-          class="resize-handle resize-nw"
-          onmousedown="startResize(event, 'nw')"
-        ></div>
-        <div
-          class="resize-handle resize-se"
-          onmousedown="startResize(event, 'se')"
-        ></div>
-        <div
-          class="resize-handle resize-sw"
-          onmousedown="startResize(event, 'sw')"
-        ></div>
-      </div>
+    <!-- Portfolio Window -->
+    <section class="window" id="window-portfolioSite">
+      <h1 class="window-header">
+        <cite id="header">Portfolio Website</cite>
+        <button id="minimize-button" class="minimize-button" onclick="minimizeWindow(this)">_</button>
+        <button id="maximize-button" onclick="maximizeWindow(this)">🗖</button>
+        <button id="close-button" onclick="closeWindow(this)">X</button>
+      </h1>
+      <section id="window-portfolio" class="window-content"></section>
+    </section>
 
-      <!-- Taskbar -->
-      <div class="taskbar">
-        <a
-          href="https://www.linkedin.com/in/prima-f"
-          target="_blank"
-          class="taskbar-button"
-        >
-          <img
-            src="images/InBug-White.png"
-            alt="LinkedIn Logo"
-            class="taskbar-icon"
-          />
-        </a>
-        <a
-          href="https://github.com/primasmilesandflowers"
-          target="_blank"
-          class="taskbar-button"
-        >
-          <img
-            src="images/github-mark-white.png"
-            alt="GitHub Logo"
-            class="taskbar-icon"
-          />
-        </a>
-        <button class="start-button" onclick="returnToHome()">Home ⋆｡°✩</button>
-        <div id="taskbar-buttons"></div>
-      </div>
-    </div>
+    <!-- Zoom Window -->
+    <section class="window" id="window-zoomSite">
+      <h1 class="window-header">
+        <cite id="header">Zoom API Integration</cite>
+        <button id="minimize-button" class="minimize-button" onclick="minimizeWindow(this)">_</button>
+        <button id="maximize-button" onclick="maximizeWindow(this)">🗖</button>
+        <button id="close-button" onclick="closeWindow(this)">X</button>
+      </h1>
+      <section id="window-zoom" class="window-content"></section>
+    </section>
 
-    <div class="text-overlay">
+    <section class="window" id="window-zenSerene">
+      <h1 class="window-header">
+        <cite id="header">Zen & Serene Prototype</cite>
+        <button id="minimize-button" class="minimize-button" onclick="minimizeWindow(this)">_</button>
+        <button id="maximize-button" onclick="maximizeWindow(this)">🗖</button>
+        <button id="close-button" onclick="closeWindow(this)">X</button>
+      </h1>
+      <section id="window-zenSerene" class="window-content"></section>
+    </section>
+
+    <section class="window" id="window-hair">
+      <h1 class="window-header">
+        <cite id="header">Booking Site Wireframe</cite>
+        <button id="minimize-button" class="minimize-button" onclick="minimizeWindow(this)">_</button>
+        <button id="maximize-button" onclick="maximizeWindow(this)">🗖</button>
+        <button id="close-button" onclick="closeWindow(this)">X</button>
+      </h1>
+      <section id="window-hair" class="window-content"></section>
+    </section>
+
+    <!-- Taskbar -->
+    <nav class="taskbar">
+      <!-- container for minimizing windows; minimized buttons will be appended here -->
+      <ul id="taskbar-buttons">
+        <li>
+          <a href="https://www.linkedin.com/in/prima-f" target="_blank" class="taskbar-button">
+            <img src="images/InBug-White.png" alt="LinkedIn Logo" class="taskbar-icon"/>
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/primasmilesandflowers" target="_blank" class="taskbar-button">
+            <img src="images/github-mark-white.png" alt="GitHub Logo" class="taskbar-icon"/>
+          </a>
+        </li>
+        <li>
+          <button onclick="returnToHome()">
+            Home ⋆｡°✩
+          </button>
+        </li>
+      </ul>
+    </nav>
+
+    
+    <!-- <p class="text-overlay">
       <pre>
-⠀⠀⢸⣦⡀⠀⠀⠀⠀⢀⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⢸⣏⠻⣶⣤⡶⢾⡿⠁⠀⢠⣄⡀⢀⣴⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⣀⣼⠷⠀⠀⠁⢀⣿⠃⠀⠀⢀⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠴⣾⣯⣅⣀⠀⠀⠀⠈⢻⣦⡀⠒⠻⠿⣿⡿⠿⠓⠂⠀⠀⢀⡇⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠉⢻⡇⣤⣾⣿⣷⣿⣿⣤⠀⠀⣿⠁⠀⠀⠀⢀⣴⣿⣿⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠸⣿⡿⠏⠀⢀⠀⠀⠿⣶⣤⣤⣤⣄⣀⣴⣿⡿⢻⣿⡆⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠟⠁⠀⢀⣼⠀⠀⠀⠹⣿⣟⠿⠿⠿⡿⠋⠀⠘⣿⣇⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⢳⣶⣶⣿⣿⣇⣀⠀⠀⠙⣿⣆⠀⠀⠀⠀⠀⠀⠛⠿⣿⣦⣤⣀⠀⠀
-⠀⠀⠀⠀⠀⠀⣹⣿⣿⣿⣿⠿⠋⠁⠀⣹⣿⠳⠀⠀⠀⠀⠀⠀⢀⣠⣽⣿⡿⠟⠃
-⠀⠀⠀⠀⠀⢰⠿⠛⠻⢿⡇⠀⠀⠀⣰⣿⠏⠀⠀⢀⠀⠀⠀⣾⣿⠟⠋⠁⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠋⠀⠀⣰⣿⣿⣾⣿⠿⢿⣷⣀⢀⣿⡇⠁⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠋⠉⠁⠀⠀⠀⠀⠙⢿⣿⣿⠇⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢿⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀
+      ⠀⠀⢸⣦⡀⠀⠀⠀⠀⢀⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      ⠀⠀⠀⢸⣏⠻⣶⣤⡶⢾⡿⠁⠀⢠⣄⡀⢀⣴⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      ⠀⠀⣀⣼⠷⠀⠀⠁⢀⣿⠃⠀⠀⢀⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      ⠴⣾⣯⣅⣀⠀⠀⠀⠈⢻⣦⡀⠒⠻⠿⣿⡿⠿⠓⠂⠀⠀⢀⡇⠀⠀⠀⠀⠀⠀⠀
+      ⠀⠀⠀⠉⢻⡇⣤⣾⣿⣷⣿⣿⣤⠀⠀⣿⠁⠀⠀⠀⢀⣴⣿⣿⠀⠀⠀⠀⠀⠀⠀
+      ⠀⠀⠀⠀⠸⣿⡿⠏⠀⢀⠀⠀⠿⣶⣤⣤⣤⣄⣀⣴⣿⡿⢻⣿⡆⠀⠀⠀⠀⠀⠀
+      ⠀⠀⠀⠀⠀⠟⠁⠀⢀⣼⠀⠀⠀⠹⣿⣟⠿⠿⠿⡿⠋⠀⠘⣿⣇⠀⠀⠀⠀⠀⠀
+      ⠀⠀⠀⠀⠀⢳⣶⣶⣿⣿⣇⣀⠀⠀⠙⣿⣆⠀⠀⠀⠀⠀⠀⠛⠿⣿⣦⣤⣀⠀⠀
+      ⠀⠀⠀⠀⠀⠀⣹⣿⣿⣿⣿⠿⠋⠁⠀⣹⣿⠳⠀⠀⠀⠀⠀⠀⢀⣠⣽⣿⡿⠟⠃
+      ⠀⠀⠀⠀⠀⢰⠿⠛⠻⢿⡇⠀⠀⠀⣰⣿⠏⠀⠀⢀⠀⠀⠀⣾⣿⠟⠋⠁⠀⠀⠀
+      ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠋⠀⠀⣰⣿⣿⣾⣿⠿⢿⣷⣀⢀⣿⡇⠁⠀⠀⠀⠀⠀
+      ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠋⠉⠁⠀⠀⠀⠀⠙⢿⣿⣿⠇⠀⠀⠀⠀⠀⠀
+      ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢿⠀⠀⠀⠀⠀⠀⠀
+      ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀
       </pre>
-
+    </p> -->
+    <script async src="https://tally.so/widgets/embed.js"></script>
+    <script src="main.js"></script>
   </body>
 </html>

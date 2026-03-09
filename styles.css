@@ -134,7 +134,7 @@ table {
 }
 
 /* --------------------------------------------------------------------------------------------------- ROOT VARIABLES  -------------------------------------------------------------------------------------------------------------- */
-root {
+:root {
   --pink-light: #ffccdd;
   --pink-dark: #cc3366;
   --desktop-bg: #ffe6f0;
@@ -143,126 +143,57 @@ root {
   --taskbar-bg: #cc3366;
   --icon-bg: #ffe6f0;
   --icon-hover: #ff99bb;
+  --grey: #313131;
   --font-main: "Courier Prime", Courier, monospace;
-
-  background-color: var(--desktop-bg);
 }
 
 /*  ------------------------------------------------------------------------------------------------- GLOBAL STYLES  ---------------------------------------------------------------------------------------------------------------  */
 
 html {
   overflow: hidden;
-}
-
-body.no-select {
-  user-select: none;
-  cursor: default;
-}
-
-@media (max-width: 500px) {
-  html {
-    font-size: 12px;
-  }
-}
-
-@media (max-height: 400px) {
-  html {
-    font-size: 12px;
-  }
+  background-color: var(--desktop-bg);
+  font-family: var(--font-main);
+  font-size: 1rem;
 }
 
 /* === Icons === */
 .icon {
-  display: grid;
-  grid-template-columns: 1fr;
-  column-gap: 140px;
-  width: 100px;
-  height: 100px;
+  display: flex;
+  width: 60px;
   cursor: pointer;
-  color: var(--pink-dark);
-  margin-top: 40px;
-  margin-left: 40px;
-  align-items: center;
+  padding: 40px 0 0 40px;
 }
 
-#icon-text {
+.icon span {
+  display: flex;
   font-size: 16px;
-  align-self: center;
+  margin-bottom: 60px;
+  color: var(--pink-dark);
   text-align: center;
-  width: 70%;
-  color: rgb(49, 49, 49);
+  align-items: center;
+  justify-content: center;
 }
 
 .icon img {
-  width: 64px;
-  height: 64px;
-  margin-bottom: 8px;
-  background-color: var(--icon-bg);
-  padding: 5px;
-  border-radius: 8px;
+  height: 60px;
+  width: 60px;
+  margin-bottom: 10px;
 }
 
-.icon:hover img {
+.icon li {
+  text-align: center;
+}
+
+.icon img:hover {
   background-color: var(--icon-hover);
 }
 
-/* === Tally Button === */
-.tally-button {
-  background-color: var(--pink-light);
-  color: var(--pink-dark);
-  border: 2px solid var(--pink-dark);
+#about-icon img:hover,
+#projects-icon img:hover,
+#chat-icon img:hover {
+  background-color: var(--icon-hover);
   border-radius: 8px;
-  padding: 10px 20px;
-  font-size: 16px;
-  font-family: var(--font-main);
-  cursor: pointer;
-  transition:
-    background-color 0.3s,
-    color 0.3s;
-}
-
-.tally-button:hover {
-  background-color: var(--pink-dark);
-  color: #fff;
-}
-
-/* Responsive Icon Sizing */
-@media (max-width: 500px) {
-  .icon {
-    width: 80px;
-    height: 80px;
-    margin-left: 20px;
-    margin-top: 20px;
-  }
-  .icon img {
-    width: 40px;
-    height: 40px;
-    margin-bottom: 4px;
-    padding: 2px;
-  }
-  #icon-text {
-    font-size: 8px;
-    width: 50%;
-  }
-}
-
-@media (max-height: 400px) {
-  .icon {
-    width: 60px;
-    height: 60px;
-    margin-left: 20px;
-    margin-top: 20px;
-  }
-  .icon img {
-    width: 40px;
-    height: 40px;
-    margin-bottom: 4px;
-    padding: 2px;
-  }
-  #icon-text {
-    font-size: 8px;
-    width: 50%;
-  }
+  padding: 4px 4px 4px 4px;
 }
 
 /* === Windows === */
@@ -279,6 +210,7 @@ body.no-select {
   top: 100px;
   left: 150px;
   display: none;
+  max-height: calc(100% - 50px);
 }
 
 #popup-text {
@@ -287,73 +219,76 @@ body.no-select {
 }
 
 #popup-image {
-  top: 275px;
-  left: 400px;
+  top: 200px;
+  left: 480px;
+  border-radius: 8px;
 }
 
-.window-header,
-.winpopup-header {
+.window-header {
+  display: flex;
+  justify-content: flex-end;
   background-color: var(--pink-dark);
   color: white;
   padding: 10px;
-  cursor: move;
   font-weight: bold;
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  font-size: 14px;
-}
-
-.window-controls,
-.winpopup-controls {
-  display: flex;
-  gap: 5px;
-}
-
-.window-controls button,
-.winpopup-controls button {
-  background-color: var(--pink-light);
-  color: var(--pink-dark);
-  border: none;
-  padding: 4px 8px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 10px;
-}
-
-.window-controls button:hover,
-.winpopup-controls button:hover {
-  background-color: var(--icon-hover);
 }
 
 .window-content {
-  overflow-y: scroll;
+  padding: 10px;
+  box-sizing: border-box;
+  font-size: 14px;
+  overflow-y: auto;
+  overflow-x: hidden;
   max-height: calc(100% - 50px);
-  color: #333;
+}
+
+.window-content p {
+  overflow: hidden;
+}
+
+#5-8-site .window-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.window-header #header {
+  margin-right: auto;
+  padding-right: 20px;
+  font-size: 14px;
+}
+
+.window-header button {
+  background-color: var(--pink-light);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 10px;
+  width: 20px;
+  height: 20px;
+  font-weight: bold;
+  margin: 0 5px 0 5px;
+  border: none;
+  color: var(--grey);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.window-header button:last-child {
+  margin-right: 0;
+}
+
+.window-content {
+  color: var(--grey);
   padding: 10px;
   box-sizing: border-box;
   font-size: 14px;
 }
 
-/* === Popup Window Content === */
-
-.winpopup-content {
-  display: flex;
-  justify-content: center;
-  height: calc(100% - 50px);
-  padding: 10px;
-  box-sizing: border-box;
-  color: #333;
-}
-
-/* Style for image in popup windows */
-.popup-image {
-  max-width: 100%;
-  max-height: 100%;
+.winpopup img {
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  align-items: center;
-  justify-content: center;
+  width: 100%;
 }
 
 @media (max-width: 500px) {
@@ -432,38 +367,32 @@ body.no-select {
 }
 
 /* === File Explorer === */
-.file-explorer {
+.window-projects {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 10px;
   background-color: var(--window-bg);
-  height: calc(100% - 50px);
+  align-items: center;
 }
 
 .file-row {
   display: flex;
   align-items: center;
-  gap: 10px;
+  margin-top: 10px;
+  padding: 10px;
   background-color: var(--icon-bg);
-  padding: 8px 12px;
   border-radius: 6px;
+  margin-bottom: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
 .file-row:hover {
   background-color: var(--icon-hover);
 }
 
-.file-row img {
-  width: 24px;
-  height: 24px;
-}
-
-.file-row span {
-  font-size: 14px;
+.icon span {
+  font-size: 1rem;
   color: var(--pink-dark);
+  text-align: center;
 }
 
 /* === Taskbar === */
@@ -471,54 +400,60 @@ body.no-select {
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 60px;
+  height: 50px;
   background-color: var(--taskbar-bg);
+  z-index: 2;
+}
+
+/* add a little spacing between taskbar icons/buttons */
+.taskbar ul li {
+  margin-right: 8px;
+}
+.taskbar ul li:last-child {
+  margin-left: auto;
+}
+
+.taskbar ul {
   display: flex;
   align-items: center;
+  list-style: none;
+  margin: 0;
   padding: 0 10px;
-  color: white;
-  font-size: 14px;
-  z-index: 1000;
+  height: 100%;
 }
 
-.taskbar .start-button {
-  background-color: var(--pink-light);
-  color: var(--pink-dark);
-  border: none;
-  padding: 6px 12px;
-  border-radius: 4px;
+.taskbar ul li:last-child {
   margin-left: auto;
-  font-weight: bold;
-  cursor: pointer;
 }
 
-.taskbar .start-button:hover {
-  background-color: var(--icon-hover);
-}
-
-.taskbar .taskbar-button {
-  background-color: var(--pink-light);
-  color: var(--pink-dark);
-  border: none;
-  padding: 10px;
+.taskbar button {
+  background-color: white;
   border-radius: 4px;
-  margin-left: 10px;
-  font-weight: bold;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  color: var(--pink-dark);
+  font-size: 14px;
+  border: none;
   cursor: pointer;
+  padding: 7px;
+  font-weight: bold;
 }
 
-.taskbar .taskbar-button:hover {
+.taskbar a,
+.taskbar button {
+  display: flex;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+}
+
+.taskbar img {
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.taskbar img:hover {
   background-color: var(--icon-hover);
-}
-
-.taskbar-icon {
-  width: 20px;
-  height: 20px;
-  vertical-align: middle;
 }
 
 @media (max-height: 400px) {
@@ -539,6 +474,46 @@ body.no-select {
   }
 }
 
+#window-5-8site .window-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+#window-5-8site .window-content p {
+  overflow-y: scroll;
+}
+
+#window-5-8site .window-content iframe { /* two-thirds of the space */
+  max-width: 66.6667%;
+}
+
+/* === Styling for Web Application Prototype when fullscreened === */
+#window-5-8site.maximized {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 20px;
+  flex: 1 1 33.3333%;
+}
+
+#window-5-8site.maximized .window-content p {
+  overflow: hidden;
+}
+#window-5-8site.maximized iframe {
+  order: -1; /* put iframe before text */
+  flex: 2 1 66.6667%; /* two-thirds of the space */
+  max-width: 66.6667%;
+}
+
+#window-portfolio .window-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
 /* === Carousel for portfolioSite.html=== */
 .content-container {
   display: flex;
@@ -551,7 +526,7 @@ body.no-select {
   height: 100%;
 }
 
-.content-container h1 {
+.content-container h2 {
   font-size: 24px;
   color: var(--pink-dark);
   margin-bottom: 15px;
@@ -638,8 +613,8 @@ body.no-select {
   position: fixed;
   top: 0;
   left: 0;
+  bottom: 50px;
   width: 100%;
-  height: 100%;
   background-color: rgba(0, 0, 0, 0.8);
   justify-content: center;
   align-items: center;
@@ -651,20 +626,21 @@ body.no-select {
   border-radius: 8px;
 }
 
-/* === Text Overlay === */
-.text-overlay {
-  position: absolute;
-  top: 65%;
-  left: 75%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  color: rgba(98, 79, 79, 0.336);
-  font-family: "Courier New", Courier, monospace;
-  font-size: 2vw;
-  line-height: 1.2;
-  z-index: 10;
-  pointer-events: none;
-  white-space: pre-wrap;
-  width: 50%;
-  height: auto;
+@media (max-width: 650px) and (max-height: 400px) {
+  html {
+    font-size: 12px;
+  }
+  .icon {
+    display: flex;
+    padding: 40px 0 0 40px;
+    width: 80px;
+  }
+  .icon img {
+    height: 80px;
+    margin-bottom: 5px;
+  }
+  .icon span {
+    font-size: 8px;
+    margin-bottom: 20px;
+  }
 }

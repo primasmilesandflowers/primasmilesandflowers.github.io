@@ -9,50 +9,45 @@
 
   <body>
     <!-- Popup Window for the text -->
-    <div class="winpopup" id="popup-text">
-      <div class="winpopup-header" onmousedown="dragWindow(event, this)">
-        System.out.print("Hello World!")
-        <div class="winpopup-controls">
-          <button class="minimize-button" onclick="minimizeWindow(this)">
-            _
-          </button>
-          <button class="maximize-button" onclick="maximizeWindow(this)">
-            🗖
-          </button>
-          <button class="close-button" onclick="closeWindow(this)">X</button>
-        </div>
-      </div>
-      <div class="winpopup-content">
-        <p>
-          Welcome to Prima's Programming Project Portfolio! This website has
-          been designed to resemble a computer desktop, so interact with it as
-          such. I have a lot of plans in store for future designs of this page
-          and for future project endeavors so stay tuned...
-        </p>
-      </div>
-    </div>
+    <section class="winpopup" id="popup-text">
+      <h1 class="window-header">
+        <cite id="header">System.out.print("Hello World!")</cite>
+        <button
+          id="minimize-button"
+          class="minimize-button"
+          onclick="minimizeWindow(this)"
+        >
+          _
+        </button>
+        <button id="maximize-button" onclick="maximizeWindow(this)">🗖</button>
+        <button id="close-button" onclick="closeWindow(this)">X</button>
+      </h1>
+      <p class="window-content">
+        Welcome to Prima's Programming Project Portfolio! This website has been
+        designed to resemble a computer desktop, so interact with it as such. I
+        have a lot of plans in store for future designs of this page and for
+        future project endeavors so stay tuned...
+      </p>
+    </section>
 
     <!-- Popup Window for the Image -->
-    <div class="winpopup" id="popup-image">
-      <div class="winpopup-header" onmousedown="dragWindow(event, this)">
-        System.out.print("It's A-Me!")
-        <div class="winpopup-controls">
-          <button class="minimize-button" onclick="minimizeWindow(this)">
-            _
-          </button>
-          <button class="maximize-button" onclick="maximizeWindow(this)">
-            🗖
-          </button>
-          <button class="close-button" onclick="closeWindow(this)">X</button>
-        </div>
-      </div>
-      <div class="winpopup-content">
-        <img
-          src="images/pic-of-me.jpg"
-          alt="Prima's Picture"
-          class="popup-image"
-        />
-      </div>
-    </div>
+    <section class="winpopup" id="popup-image">
+      <h1 class="window-header">
+        <cite id="header">System.out.print("It's A-Me!")</cite>
+        <button
+          id="minimize-button"
+          class="minimize-button"
+          onclick="minimizeWindow(this)"
+        >
+          _
+        </button>
+        <button id="close-button" onclick="closeWindow(this)">X</button>
+      </h1>
+      <img
+        class="popup-image"
+        src="images/pic-of-me.jpg"
+        alt="Prima's Picture"
+      />
+    </section>
   </body>
 </html>

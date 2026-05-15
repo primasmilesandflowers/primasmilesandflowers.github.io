@@ -8,124 +8,128 @@
   </head>
 
   <body>
+    <header>
+      <h1>Prima's Portfolio</h1>
+      <!-- Icons -->
+      <nav>
+        <ul>
+          <li id="about-icon" onclick="openWindow('about')">
+            <img src="https://img.icons8.com/ios-filled/50/000000/info.png" alt="About Icon"/>
+            <span>About</span>
+          </li>
+          <li id="projects-icon" onclick="openWindow('projects')">
+            <img src="https://img.icons8.com/ios-filled/50/000000/code.png" alt="Projects Icon"/>
+            <span>Projects</span>
+          </li>
+          <li id="chat-icon" onclick="openTallyPopup()" data-tally-open="wMG8O8" data-tally-width="385">
+            <img src="https://img.icons8.com/ios-filled/100/chat.png" alt="Chat Icon"/>
+            <span>Chat</span>
+          </li>
+        </ul>
+      </nav>
+    </header>
 
-    <!-- Icons -->
-    <nav class="icon">
-      <ul>
-        <li id="about-icon" onclick="openWindow('about')">
-          <img src="https://img.icons8.com/ios-filled/50/000000/info.png" alt="About Icon"/>
-          <span>About</span>
-        </li>
-        <li id="projects-icon" onclick="openWindow('projects')">
-          <img src="https://img.icons8.com/ios-filled/50/000000/code.png" alt="Projects Icon"/>
-          <span>Projects</span>
-        </li>
-        <li id="chat-icon" onclick="openTallyPopup()" data-tally-open="wMG8O8" data-tally-width="385">
-          <img src="https://img.icons8.com/ios-filled/100/chat.png" alt="Chat Icon"/>
-          <span>Chat</span>
-        </li>
-      </ul>
-    </nav>
- 
+    <main>
     <!-- Dynamically-loaded "Hello World" windows -->
     <section id="popup-windows-container"></section>
 
     <!-- About Window -->
     <section class="window" id="window-about">
-      <h1 class="window-header">
-        <cite id="header">About</cite>
+      <p class="window-header">
+        <h2>About</h2>
           <button id="minimize-button" class="minimize-button" onclick="minimizeWindow(this)">_</button>
           <button id="maximize-button" onclick="maximizeWindow(this)">🗖</button>
           <button id="close-button" onclick="closeWindow(this)">X</button>
-      </h1>
+      </p>
         
       <p class="window-content">
         Hey y'all, my name's Prima! I am currently an undergraduate student studying
         Graphic Information Technology at Arizona State. My main focus with my studies is to get my
         foot in the door with UI/UX design. What better way to do that, than to
         craft a portfolio website (like, the one you are on right now...) from
-        scratch? <br /><br />
+        scratch?</p>
+
+      <p class="window-content">
         I have had a blast crafting this site and finally putting my creative skills
         to good use. Getting familiar with industry-utilized applications like
         Figma, while teaching myself the foundations of HTML, JavaScript, and CSS
         have all been so insightful. Not only that, but my personal productivity
         levels have skyrocketed! This website will continue to grow and evolve, as
-        will I, as time elapses. Thanks for following along. <br />
-        <br />
-        Lots of Love, <br />
-        <br />
-        Prima :3
+        will I, as time elapses. Thanks for following along.
       </p>
+
+      <p class="window-content">Lots of Love,</p>
+      <p class="window-content">Prima :3</p>
     </section>
 
     <!-- Projects Window -->
     <section class="window" id="window-projects">
-      <h1 class="window-header">
-        <cite id="header">📁 File Explorer</cite>
-        <button id="minimize-button" class="minimize-button" onclick="minimizeWindow(this)">_</button>
-        <button id="maximize-button" onclick="maximizeWindow(this)">🗖</button>
-        <button id="close-button" onclick="closeWindow(this)">X</button>
-      </h1>
+      <p class="window-header">
+        <cite class="header">📁 File Explorer</cite>
+        <button class="minimize-button" onclick="minimizeWindow(this)">_</button>
+        <button class="maximize-button" onclick="maximizeWindow(this)">🗖</button>
+        <button class="close-button" onclick="closeWindow(this)">X</button>
+      </p>
       <!-- Content from projects.html will be dynamically loaded here -->
       <ul class="file-explorer"></ul>
     </section>
 
     <!-- 5-8site Window -->
     <section class="window" id="window-5-8site">
-      <h1 class="window-header">
-        <cite id="header">Web Application Prototype</cite>
-        <button id="minimize-button" class="minimize-button" onclick="minimizeWindow(this)">_</button>
-        <button id="maximize-button" onclick="maximizeWindow(this)">🗖</button>
-        <button id="close-button" onclick="closeWindow(this)">X</button>
-      </h1>
+      <p class="window-header">
+        <h3>Web Application Prototype</h3>
+        <button class="minimize-button" onclick="minimizeWindow(this)">_</button>
+        <button class="maximize-button" onclick="maximizeWindow(this)">🗖</button>
+        <button class="close-button" onclick="closeWindow(this)">X</button>
+      </p>
       <!-- Content from 5-8site.html will be dynamically loaded here -->
       <section id="window-5-8-content" class="window-content"></section>
     </section>
 
     <!-- Portfolio Window -->
     <section class="window" id="window-portfolioSite">
-      <h1 class="window-header">
-        <cite id="header">Portfolio Website</cite>
-        <button id="minimize-button" class="minimize-button" onclick="minimizeWindow(this)">_</button>
-        <button id="maximize-button" onclick="maximizeWindow(this)">🗖</button>
-        <button id="close-button" onclick="closeWindow(this)">X</button>
-      </h1>
+      <p class="window-header">
+        <h3>Portfolio Website</h3>
+        <button class="minimize-button" onclick="minimizeWindow(this)">_</button>
+        <button class="maximize-button" onclick="maximizeWindow(this)">🗖</button>
+        <button class="close-button" onclick="closeWindow(this)">X</button>
+      </p>
       <section id="window-portfolio" class="window-content"></section>
     </section>
 
     <!-- Zoom Window -->
     <section class="window" id="window-zoomSite">
-      <h1 class="window-header">
-        <cite id="header">Zoom API Integration</cite>
-        <button id="minimize-button" class="minimize-button" onclick="minimizeWindow(this)">_</button>
-        <button id="maximize-button" onclick="maximizeWindow(this)">🗖</button>
-        <button id="close-button" onclick="closeWindow(this)">X</button>
-      </h1>
+      <p class="window-header">
+        <h3>Zoom API Integration</h3>
+        <button class="minimize-button" onclick="minimizeWindow(this)">_</button>
+        <button class="maximize-button" onclick="maximizeWindow(this)">🗖</button>
+        <button class="close-button" onclick="closeWindow(this)">X</button>
+      </p>
       <section id="window-zoom" class="window-content"></section>
     </section>
 
     <section class="window" id="window-zenSerene">
-      <h1 class="window-header">
-        <cite id="header">Zen & Serene Prototype</cite>
-        <button id="minimize-button" class="minimize-button" onclick="minimizeWindow(this)">_</button>
-        <button id="maximize-button" onclick="maximizeWindow(this)">🗖</button>
-        <button id="close-button" onclick="closeWindow(this)">X</button>
-      </h1>
+      <p class="window-header">
+        <h3>Zen & Serene Prototype</h3>
+        <button class="minimize-button" onclick="minimizeWindow(this)">_</button>
+        <button class="maximize-button" onclick="maximizeWindow(this)">🗖</button>
+        <button class="close-button" onclick="closeWindow(this)">X</button>
+      </p>
       <section id="window-zenSerene" class="window-content"></section>
     </section>
 
     <section class="window" id="window-hair">
-      <h1 class="window-header">
-        <cite id="header">Booking Site Wireframe</cite>
-        <button id="minimize-button" class="minimize-button" onclick="minimizeWindow(this)">_</button>
-        <button id="maximize-button" onclick="maximizeWindow(this)">🗖</button>
-        <button id="close-button" onclick="closeWindow(this)">X</button>
-      </h1>
+      <p class="window-header">
+        <h3>Booking Site Wireframe</h3>
+        <button class="minimize-button" onclick="minimizeWindow(this)">_</button>
+        <button class="maximize-button" onclick="maximizeWindow(this)">🗖</button>
+        <button class="close-button" onclick="closeWindow(this)">X</button>
+      </p>
       <section id="window-hair" class="window-content"></section>
     </section>
 
     <!-- Taskbar -->
-    <nav class="taskbar">
+    <section class="taskbar">
       <!-- container for minimizing windows; minimized buttons will be appended here -->
       <ul id="taskbar-buttons">
         <li>
@@ -144,27 +148,8 @@
           </button>
         </li>
       </ul>
-    </nav>
-
-    
-    <!-- <p class="text-overlay">
-      <pre>
-      ⠀⠀⢸⣦⡀⠀⠀⠀⠀⢀⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-      ⠀⠀⠀⢸⣏⠻⣶⣤⡶⢾⡿⠁⠀⢠⣄⡀⢀⣴⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-      ⠀⠀⣀⣼⠷⠀⠀⠁⢀⣿⠃⠀⠀⢀⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-      ⠴⣾⣯⣅⣀⠀⠀⠀⠈⢻⣦⡀⠒⠻⠿⣿⡿⠿⠓⠂⠀⠀⢀⡇⠀⠀⠀⠀⠀⠀⠀
-      ⠀⠀⠀⠉⢻⡇⣤⣾⣿⣷⣿⣿⣤⠀⠀⣿⠁⠀⠀⠀⢀⣴⣿⣿⠀⠀⠀⠀⠀⠀⠀
-      ⠀⠀⠀⠀⠸⣿⡿⠏⠀⢀⠀⠀⠿⣶⣤⣤⣤⣄⣀⣴⣿⡿⢻⣿⡆⠀⠀⠀⠀⠀⠀
-      ⠀⠀⠀⠀⠀⠟⠁⠀⢀⣼⠀⠀⠀⠹⣿⣟⠿⠿⠿⡿⠋⠀⠘⣿⣇⠀⠀⠀⠀⠀⠀
-      ⠀⠀⠀⠀⠀⢳⣶⣶⣿⣿⣇⣀⠀⠀⠙⣿⣆⠀⠀⠀⠀⠀⠀⠛⠿⣿⣦⣤⣀⠀⠀
-      ⠀⠀⠀⠀⠀⠀⣹⣿⣿⣿⣿⠿⠋⠁⠀⣹⣿⠳⠀⠀⠀⠀⠀⠀⢀⣠⣽⣿⡿⠟⠃
-      ⠀⠀⠀⠀⠀⢰⠿⠛⠻⢿⡇⠀⠀⠀⣰⣿⠏⠀⠀⢀⠀⠀⠀⣾⣿⠟⠋⠁⠀⠀⠀
-      ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠋⠀⠀⣰⣿⣿⣾⣿⠿⢿⣷⣀⢀⣿⡇⠁⠀⠀⠀⠀⠀
-      ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠋⠉⠁⠀⠀⠀⠀⠙⢿⣿⣿⠇⠀⠀⠀⠀⠀⠀
-      ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢿⠀⠀⠀⠀⠀⠀⠀
-      ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀
-      </pre>
-    </p> -->
+    </section>
+    </main>
     <script async src="https://tally.so/widgets/embed.js"></script>
     <script src="main.js"></script>
   </body>

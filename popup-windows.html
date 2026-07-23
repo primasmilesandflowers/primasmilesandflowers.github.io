@@ -1,8 +1,10 @@
 <!-- Popup Window -->
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>primafombOS | Web Developer</title>
     <link rel="stylesheet" href="styles.css" />
     <script src="main.js"></script>
   </head>
@@ -10,18 +12,13 @@
   <body>
     <!-- Popup Window for the text -->
     <section class="winpopup" id="popup-text">
-      <h1 class="window-header">
-        <cite id="header">System.out.print("Hello World!")</cite>
-        <button
-          id="minimize-button"
-          class="minimize-button"
-          onclick="minimizeWindow(this)"
-        >
-          _
-        </button>
-        <button id="maximize-button" onclick="maximizeWindow(this)">🗖</button>
-        <button id="close-button" onclick="closeWindow(this)">X</button>
-      </h1>
+      <h2>System.out.print("Hello World!")</h2>
+        <p class="window-header">
+            <button class="minimize-button" class="minimize-button" onclick="minimizeWindow(this)">_</button>
+            <button class="maximize-button" onclick="maximizeWindow(this)">🗖</button>
+            <button class="close-button" onclick="closeWindow(this)">X</button>
+        </p>
+
       <p class="window-content">
         Welcome to Prima's Programming Project Portfolio! This website has been
         designed to resemble a computer desktop, so interact with it as such. I
@@ -32,8 +29,8 @@
 
     <!-- Popup Window for the Image -->
     <section class="winpopup" id="popup-image">
-      <h1 class="window-header">
-        <cite id="header">System.out.print("It's A-Me!")</cite>
+      <h2>System.out.print("It's A-Me!")</h2>
+      <p class="window-header">
         <button
           id="minimize-button"
           class="minimize-button"
@@ -42,7 +39,7 @@
           _
         </button>
         <button id="close-button" onclick="closeWindow(this)">X</button>
-      </h1>
+      </p>
       <img
         class="popup-image"
         src="images/pic-of-me.jpg"

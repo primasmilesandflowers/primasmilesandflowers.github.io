@@ -144,13 +144,15 @@ table {
   --icon-bg: #ffe6f0;
   --icon-hover: #ff99bb;
   --grey: #313131;
+  --warm-cream: #FEFBEA;
   --font-main: "Courier Prime", Courier, monospace;
 }
 
 /*  ------------------------------------------------------------------------------------------------- GLOBAL STYLES  ---------------------------------------------------------------------------------------------------------------  */
 
-html {
+html, body {
   overflow: hidden;
+  min-width: 400px;
   background-color: var(--desktop-bg);
   font-family: var(--font-main);
   font-size: 1rem;
@@ -168,15 +170,17 @@ h1 {
 
 /* Icons */
 nav {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 10px;
-  place-items: center;
-  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 25px;
 }
 
 nav img {
-  padding-left: 10px;
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  padding: 5px;
 }
 
 nav p {
@@ -185,4 +189,122 @@ nav p {
 }
 
 /* Taskbar */
+.taskbar {
+  display: flex;
+  justify-content: space-between;
+  justify-content: flex-end;
+  margin: 25px;
+}
 
+.taskbar img {
+  width: 70px;
+  height: 70px;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+/* Popup Windows */
+.window, .winpopup {
+  position: absolute;
+  margin: 5px;
+  background-color: var(--warm-cream);
+  border: 2px solid var(--window-border);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* clip anything that would otherwise spill past the rounded border */
+}
+
+.window-header, .winpopup-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: var(--pink-dark);
+  border-radius: 8px 8px 0 0;
+  padding: 5px;
+  padding: 5px;
+}
+
+.window-header h2, .winpopup-header h2 {
+  flex: 1;
+  text-align: left;
+  color: var(--warm-cream);
+  font-size: .65rem;
+  padding-left: 10px;
+}
+
+.window-header p, .winpopup-header p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.winpopup img {
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+#popup-image {
+  width: 200px;
+  height: 231.5px;
+}
+
+.window-content {
+  flex: 1; /* fill whatever vertical space is left under the header */
+  min-height: 0; /* let the flex item actually shrink instead of growing to fit its content */
+  padding: 10px;
+  overflow-y: scroll;
+  overflow-x: auto; /* contain content (like a fixed-width iframe) that's wider than the window too */
+  font-size: .65rem;
+}
+
+/*projects window*/
+.file-explorer {
+  padding: 5px;
+  overflow-y: scroll;
+}
+
+.file-row {
+  padding: 8px;
+  cursor: pointer;
+  background-color: var(--icon-bg);
+  border-radius: 5px;
+  margin-bottom: 5px;
+  font-size: .65rem;
+}
+
+/*projects*/
+
+
+/* MEDIA QUERIES (medium screens) */
+@media (min-width: 800px) {
+
+  nav img:hover {
+    background-color: var(--icon-hover);
+    cursor: pointer;
+  }
+
+  .taskbar img:hover {
+    background-color: var(--icon-hover);
+    cursor: pointer;
+  }
+
+  nav img, .taskbar img {
+    transition: all 0.3s ease-in-out;
+  }
+
+}
+
+/* MEDIA QUERIES (small screens) */
+@media (max-width: 799px) {
+
+  .minimize-button {
+    display: none;
+  }
+
+}

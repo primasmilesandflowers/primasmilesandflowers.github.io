@@ -54,7 +54,10 @@ function openWindow(name) {
   // Show the selected window
   const win = document.getElementById(`window-${name}`);
   if (win) {
-    win.style.display = "block";
+    // "flex", not "block": an inline display would override the
+    // stylesheet's display:flex, and the header/content column layout that
+    // lets .window-content scroll depends on the window being a flex box.
+    win.style.display = "flex";
     win.style.zIndex = Date.now(); // Bring the window to the front
     resetClickGuards(win); // its buttons can be clicked again now that it's open
     centerInViewport(win); // center the window in the viewport on open
@@ -119,7 +122,7 @@ fetch(popupPath)
     // Clear container and append only the extracted popup elements
     popupContainer.innerHTML = "";
     popups.forEach((popup) => {
-      popup.style.display = "block"; // Make popup visible on load
+      popup.style.display = "flex"; // Make popup visible on load (flex: see openWindow)
       popupContainer.appendChild(popup);
 
       // The image popup goes in the top-right corner; everything else
@@ -168,42 +171,91 @@ function loadWindowContent(windowId, filePath) {
       }
 
       contentElement.innerHTML = insert;
+      initCarousel(contentElement); // no-op unless this project has one
     })
     .catch((error) => {
       contentElement.innerHTML = `<p>Error loading content: ${error.message}</p>`;
     });
 }
 
+// Gap left between a maximized window and the edges of the viewport
+const MAXIMIZE_MARGIN = 10;
+
+// The inline styles maximizing overwrites; saved on the way in so the
+// window can be put back exactly where it was on the way out.
+const GEOMETRY_PROPS = [
+  "position",
+  "top",
+  "right",
+  "bottom",
+  "left",
+  "width",
+  "height",
+  "maxWidth",
+  "maxHeight",
+];
+
 // Maximize or restore a popup window
 function maximizeWindow(button) {
   const win = button.closest(".winpopup, .window");
+  if (!win) return;
+
+  // The image popup's picture is a fixed 300px square in the CSS, so it
+  // has to be stretched separately or the maximized window is mostly
+  // empty space below it.
+  const img = win.matches(".winpopup") ? win.querySelector(":scope > img") : null;
+
+  // Maximize is a toggle, so it's exempt from the click-once guard —
+  // otherwise the window could be maximized but never restored.
+  delete button.dataset.clickUsed;
 
   if (win.classList.contains("maximized")) {
-    // restore to non-maximized size
+    // Restore: put back whatever inline geometry the window had before.
+    // An empty string clears the inline value and lets the stylesheet win.
     win.classList.remove("maximized");
 
-    const viewportWidth = window.innerWidth;
+    const saved = JSON.parse(win.dataset.preMaximize || "{}");
+    GEOMETRY_PROPS.forEach((prop) => {
+      win.style[prop] = saved[prop] || "";
+    });
+    delete win.dataset.preMaximize;
 
-    if (viewportWidth >= 400 && viewportWidth <= 800) {
-      win.style.width = "300px";
-      win.style.height = "300px";
-      win.style.top = "20px";
-      win.style.left = "50px";
-    } else {
-      // Standard restore dimensions
-      win.style.width = "400px";
-      win.style.height = "400px";
-      win.style.top = "150px";
-      win.style.left = "200px";
+    if (img) {
+      img.style.flex = "";
+      img.style.minHeight = "";
+      img.style.width = "";
+      img.style.height = "";
     }
   } else {
-    // maximize to full screen
+    // Maximize: fill the whole viewport, less a 10px margin all around.
+    const saved = {};
+    GEOMETRY_PROPS.forEach((prop) => {
+      saved[prop] = win.style[prop];
+    });
+    win.dataset.preMaximize = JSON.stringify(saved);
+
     win.classList.add("maximized");
-    win.style.width = "390px";
-    win.style.height = "90%";
-    win.style.top = "5px";
-    win.style.left = "5px";
-    win.style.bottom = "5px";
+
+    // Fixed positioning keeps the window pinned to the viewport instead of
+    // the page, and setting all four offsets with auto width/height lets
+    // the browser size it — including its border — so it keeps filling the
+    // viewport when the window is resized, with no resize handler needed.
+    win.style.position = "fixed";
+    win.style.top = `${MAXIMIZE_MARGIN}px`;
+    win.style.right = `${MAXIMIZE_MARGIN}px`;
+    win.style.bottom = `${MAXIMIZE_MARGIN}px`;
+    win.style.left = `${MAXIMIZE_MARGIN}px`;
+    win.style.width = "auto";
+    win.style.height = "auto";
+    win.style.maxWidth = "none";
+    win.style.maxHeight = "none";
+
+    if (img) {
+      img.style.flex = "1";
+      img.style.minHeight = "0";
+      img.style.width = "100%";
+      img.style.height = "auto";
+    }
   }
 }
 
@@ -251,8 +303,8 @@ function minimizeWindow(button) {
             .textContent.trim();
       taskbarButton.setAttribute("data-window-id", windowElement.id);
       taskbarButton.onclick = () => {
-        windowElement.style.display = "block";
-        contentElement.style.display = "block";
+        windowElement.style.display = "flex";
+        contentElement.style.display = ""; // back to whatever the stylesheet says
         windowElement.style.width = "400px";
         windowElement.style.height = "400px";
         resetClickGuards(windowElement); // its buttons work again now that it's restored
@@ -329,6 +381,75 @@ fetch("projects.html")
   .catch((error) => {
     console.error("Error loading projects.html:", error);
   });
+
+// --- Project image carousel -------------------------------------------
+// The carousel markup is fetched into a window at runtime, so nothing here
+// can hold onto elements up front — each function looks them up when it
+// runs. Only one carousel exists (the portfolio window), so a plain
+// document-wide lookup is enough.
+
+// Show slide `index`, wrapping around in both directions
+function showSlide(container, index) {
+  const slides = container.querySelectorAll(".slide");
+  if (!slides.length) return;
+
+  const next = (index + slides.length) % slides.length;
+  slides.forEach((slide, i) => slide.classList.toggle("active", i === next));
+  container.dataset.slideIndex = next;
+
+  // The arrows and slides carry onclick attributes, so the click-once
+  // guard would retire them after a single use. A carousel has to stay
+  // clickable, so clear the flags every time it's used.
+  resetClickGuards(container);
+}
+
+function moveCarousel(step) {
+  const container = document.querySelector(".carousel-container");
+  if (!container) return;
+  showSlide(container, Number(container.dataset.slideIndex || 0) + step);
+}
+
+function nextImage() {
+  moveCarousel(1);
+}
+
+function prevImage() {
+  moveCarousel(-1);
+}
+
+// Called after a project window's content is injected, to put the
+// carousel on its first slide (without it, every slide stays hidden).
+function initCarousel(scope) {
+  const container = scope.querySelector(".carousel-container");
+  if (container) showSlide(container, 0);
+}
+
+// --- Fullscreen image viewer ------------------------------------------
+function openFullscreen(image) {
+  const modal = document.getElementById("fullscreenModal");
+  const fullImage = document.getElementById("fullscreenImage");
+  if (!modal || !fullImage) return;
+
+  fullImage.src = image.src;
+  fullImage.alt = image.alt;
+  modal.classList.add("open");
+  resetClickGuards(modal); // the modal has to stay closeable
+}
+
+function closeFullscreen() {
+  const modal = document.getElementById("fullscreenModal");
+  if (!modal) return;
+
+  modal.classList.remove("open");
+  resetClickGuards(modal);
+
+  const container = document.querySelector(".carousel-container");
+  if (container) resetClickGuards(container); // slides can be reopened
+}
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") closeFullscreen();
+});
 
 // Tally Form Integration
 function openTallyPopup() {

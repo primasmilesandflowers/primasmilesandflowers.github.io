@@ -11,7 +11,7 @@
     <!-- only include the body content that should appear inside the window -->
    <section class="window" id="window-portfolio">
       
-    <p class="window-content">
+    <p>
       Surely I would be selling myself short if I did not include the website
       that I coded to be my portfolio, from the aforementioned portfolio! This
       has definitely been my most fun project that I have done thus far. By
@@ -20,7 +20,9 @@
       resource that I will continue to tweak for the duration of my
       professional career, but have found my passion in UI/UX design and
       front-end development.
-      <br /><br />
+    </p>
+
+    <p>
       Funny enough, in my opinion, the most true-to-life encounter that I
       faced while making this site was how it has completely morphed from what
       my original wireframe was. When I set out initially to make this site, I
@@ -36,11 +38,12 @@
       src="https://embed.figma.com/design/a4fPSRIwMphO6p425TzZ0P/portfolio-wireframe?node-id=0-1&embed-host=share"
       allowfullscreen
     ></iframe>
-    <div class="carousel-container">
+
+    <section class="carousel-container">
+      <h4>Portfolio Images</h4>
       <button class="carousel-arrow left" onclick="prevImage()">
         &#10094;
       </button>
-      <div class="carousel-slides">
         <img
           src="images/port-ss1.jpg"
           alt="Portfolio Sketch 1"
@@ -59,19 +62,10 @@
           onclick="openFullscreen(this)"
           class="slide"
         />
-      </div>
       <button class="carousel-arrow right" onclick="nextImage()">
         &#10095;
       </button>
-    </div>
-    <!-- Fullscreen Modal -->
-    <button
-      id="fullscreenModal"
-      class="fullscreen-modal"
-      onclick="closeFullscreen()"
-    >
-      <img id="fullscreenImage" />
-    </button>
     </section>
+   </section>
   </body>
 </html>

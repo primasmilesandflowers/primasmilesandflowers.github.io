@@ -258,7 +258,7 @@ nav p {
   min-height: 0; /* ...but be allowed to shrink below the content's height, which is what makes it scroll instead of stretching the window */
   overflow-x: hidden;
   font-size: .65rem;
-  overflow-y: scroll;
+  overflow-y: auto;
   margin: 10px;
 }
 
